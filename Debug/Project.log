@@ -1,9 +1,9 @@
-﻿Build started 12/15/2017 1:43:18 AM.
+﻿Build started 12/16/2017 3:35:09 PM.
      1>Project "F:\assembly\mini database\Project.vcxproj" on node 2 (Build target(s)).
        Project file contains ToolsVersion="15.0". This toolset may be unknown or missing, in which case you may be able to resolve this by installing the appropriate version of MSBuild, or the build may have been forced to a particular ToolsVersion for policy reasons. Treating the project as if it had ToolsVersion="4.0". For more information, please see http://go.microsoft.com/fwlink/?LinkId=291333.
      1>_MASM:
          Assembling Min_database.asm...
-         cmd.exe /C "C:\Users\aesma\AppData\Local\Temp\tmp4c43dcd392bb48538bf9275ce0da6637.cmd"
+         cmd.exe /C "C:\Users\aesma\AppData\Local\Temp\tmp3bf1b6d45fba4f639d571e0d7e75769b.cmd"
          ml.exe /c /nologo /Sg /Zi /Fo"Debug\Min_database.obj" /Fl"Project.lst" /I "c:\Irvine" /W3 /errorReport:prompt  /TaMin_database.asm
      1>Min_database.asm(4): warning A4011: multiple .MODEL directives found : .MODEL ignored
        Link:
@@ -13,4 +13,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.52
+Time Elapsed 00:00:00.31

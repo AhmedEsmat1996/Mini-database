@@ -1,4 +1,4 @@
-Microsoft (R) Macro Assembler Version 11.00.50727.1	    12/15/17 01:43:18
+Microsoft (R) Macro Assembler Version 11.00.50727.1	    12/16/17 15:35:09
 Min_database.asm					     Page 1 - 1
 
 
@@ -28,33 +28,34 @@ Min_database.asm					     Page 1 - 1
 				.model flat,stdcall
 Min_database.asm(4) : warning A4011:multiple .MODEL directives found : .MODEL ignored
  = 00001389			BUFFER_SIZE = 5001
+ = 000000FB			key = 251
  00000000			.data
  00000000  00001389 [		buffer byte BUFFER_SIZE DUP(?)
 	    00
 	   ]
- 00001389 6F 75 74 70 75	filename byte "output.txt",0
-	   74 2E 74 78 74
-	   00
- 00001394  00000050 [		filenamee BYTE 80 DUP(0)
+ 00001389 64 61 74 61 62	filename byte "database.txt",0
+	   61 73 65 2E 74
+	   78 74 00
+ 00001396  00000050 [		filenamee BYTE 80 DUP(0)
 	    00
 	   ]
- 000013E4 00000000		fileHandle HANDLE ?
- 000013E8 00000000		stringLength Dword ?
- 000013EC 00000000		bytesWritten Dword ?
- 000013F0 43 61 6E 6E 6F	str1 BYTE "Cannot create file",0dh,0ah,0
+ 000013E6 00000000		fileHandle HANDLE ?
+ 000013EA 00000000		stringLength Dword ?
+ 000013EE 00000000		bytesWritten Dword ?
+ 000013F2 43 61 6E 6E 6F	str1 BYTE "Cannot create file",0dh,0ah,0
 	   74 20 63 72 65
 	   61 74 65 20 66
 	   69 6C 65 0D 0A
 	   00
- 00001405 42 79 74 65 73	str2 BYTE "Bytes written to file [output.txt]:",0
+ 00001407 42 79 74 65 73	str2 BYTE "Bytes written to file [database.txt]:",0
 	   20 77 72 69 74
 	   74 65 6E 20 74
 	   6F 20 66 69 6C
-	   65 20 5B 6F 75
-	   74 70 75 74 2E
-	   74 78 74 5D 3A
-	   00
- 00001429 45 6E 74 65 72	str3 BYTE "Enter up to 500 characters and press"
+	   65 20 5B 64 61
+	   74 61 62 61 73
+	   65 2E 74 78 74
+	   5D 3A 00
+ 0000142D 45 6E 74 65 72	str3 BYTE "Enter up to 500 characters and press"
 	   20 75 70 20 74
 	   6F 20 35 30 30
 	   20 63 68 61 72
@@ -62,110 +63,162 @@ Min_database.asm(4) : warning A4011:multiple .MODEL directives found : .MODEL ig
 	   73 20 61 6E 64
 	   20 70 72 65 73
 	   73
- 0000144D  5B 45 6E 74 65	BYTE "[Enter]: ",0
+ 00001451  5B 45 6E 74 65	BYTE "[Enter]: ",0
 	   72 5D 3A 20 00
+
+ 0000145B 45 6E 74 65 72	enroll byte "Enter Student's ID and Grade seprated by @ :"
+	   20 53 74 75 64
+	   65 6E 74 27 73
+	   20 49 44 20 61
+	   6E 64 20 47 72
+	   61 64 65 20 73
+	   65 70 72 61 74
+	   65 64 20 62 79
+	   20 40 20 3A
+				;str1 byte "Enter Student Grade: ",0
+
  00000000			.code
- 00000000			createfile_ proc
-				;create new file
- 00000000  BA 00001389 R	mov edx, offset filename
- 00000005  E8 00000000 E	call createoutputfile
- 0000000A  A3 000013E4 R	mov fileHandle ,eax
-				; Check for errors.
- 0000000F  83 F8 FF		cmp eax, INVALID_HANDLE_VALUE ; error found?
- 00000012  75 11		jne file_ok ; no: skip
- 00000014  BA 000013F0 R	mov edx,OFFSET str1 ; display error
- 00000019  E8 00000000 E	call WriteString
+
+				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+ 00000000			main proc
+ 00000000  E8 00000027		call  createfile_
 				exit
- 0000001E  6A 00	   *	    push   +000000000h
- 00000020  E8 00000000 E   *	    call   ExitProcess
- 00000025			file_ok:
-				; Ask the user to input a string
- 00000025  BA 00001429 R	mov edx, offset str3
- 0000002A  E8 00000000 E	call writestring
- 0000002F  B9 00001389		mov ecx,BUFFER_SIZE
- 00000034  BA 00000000 R	mov edx, offset buffer
- 00000039  E8 00000000 E	call readstring
- 0000003E  A3 000013E8 R	mov stringlength ,eax
+ 00000005  6A 00	   *	    push   +000000000h
+ 00000007  E8 00000000 E   *	    call   ExitProcess
+					
+ 0000000C			main endp
+				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ 0000000C			DisplayMessage PROC
+				;display the message
+ 0000000C  60			pushad
+ 0000000D  E8 00000000 E	call writestring
+				;call Crlf
+ 00000012  61			popad
+ 00000013  C3			ret
+ 00000014			DisplayMessage endp
+				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ 00000014			encrypt proc
+ 00000014  60			pushad
+ 00000015  8B 0D 000013EA R	mov ecx,stringLength
+ 0000001B  BE 00000000		mov esi,0
+ 00000020			Lo:
+ 00000020  80 B6 00000000 R	xor buffer[esi],key ; translate a byte
+	   FB
+ 00000027  46			inc esi
+ 00000028  E2 F6		loop Lo
+ 0000002A  61			popad
+ 0000002B  C3			ret 
+ 0000002C			encrypt endp
+				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+ 0000002C			createfile_ proc
+				;create new file
+ 0000002C  60			pushad
+ 0000002D  BA 00001389 R	mov edx, offset filename
+ 00000032  E8 00000000 E	call createoutputfile
+ 00000037  A3 000013E6 R	mov fileHandle ,eax
+				; Check for errors.
+ 0000003C  83 F8 FF		cmp eax, INVALID_HANDLE_VALUE      ; error found?
+ 0000003F  75 11		jne file_ok ; no: skip
+ 00000041  BA 000013F2 R	mov edx,OFFSET str1                ; display error
+ 00000046  E8 FFFFFFC1		call DisplayMessage
+				exit
+ 0000004B  6A 00	   *	    push   +000000000h
+ 0000004D  E8 00000000 E   *	    call   ExitProcess
+ 00000052			file_ok:
+				;Ask the user to input a string
+ 00000052  BA 0000145B R	mov edx, offset enroll
+ 00000057  E8 FFFFFFB0		call DisplayMessage
+ 0000005C  B9 00001389		mov ecx,BUFFER_SIZE
+ 00000061  BA 00000000 R	mov edx, offset buffer
+ 00000066  E8 00000000 E	call readstring
+ 0000006B  A3 000013EA R	mov stringlength ,eax
+ 00000070  E8 FFFFFF9F		call encrypt
+
 				; Write the buffer to the output file.
- 00000043  A1 000013E4 R	mov eax, filehandle
- 00000048  BA 00000000 R	mov edx,offset buffer
- 0000004D  8B 0D 000013E8 R	mov ecx,stringlength
- 00000053  E8 00000000 E	call writetofile
- 00000058  A3 000013EC R	mov byteswritten ,eax
- 0000005D  E8 00000000 E	call closefile
+ 00000075  A1 000013E6 R	mov eax, filehandle
+ 0000007A  BA 00000000 R	mov edx,offset buffer
+ 0000007F  8B 0D 000013EA R	mov ecx,stringlength
+ 00000085  E8 00000000 E	call writetofile
+ 0000008A  A3 000013EE R	mov byteswritten ,eax
+ 0000008F  E8 00000000 E	call closefile
 				; Display the return value.
- 00000062  BA 00001405 R	mov edx,OFFSET str2 ; "Bytes written"
- 00000067  E8 00000000 E	call WriteString
- 0000006C  A1 000013EC R	mov eax,bytesWritten
- 00000071  E8 00000000 E	call WriteDec
- 00000076  E8 00000000 E	call Crlf
- 0000007B  C3			ret
- 0000007C			createfile_ endp
- 0000007C			Rfile proc
+ 00000094  BA 00001407 R	mov edx,OFFSET str2 ; "Bytes written"
+ 00000099  E8 FFFFFF6E		call DisplayMessage
+ 0000009E  A1 000013EE R	mov eax,bytesWritten
+ 000000A3  E8 00000000 E	call WriteDec
+ 000000A8  E8 00000000 E	call Crlf
+ 000000AD  61			popad
+ 000000AE  C3			ret
+ 000000AF			createfile_ endp
+				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+ 000000AF			Rfile proc
 				; Let user input a filename.
 				mWrite "Enter an input filename: "
- 00001457		     1		.data		
- 00001457 45 6E 74 65 72     1		??0000 BYTE "Enter an input filename: ",0	
+ 00001487		     1		.data		
+ 00001487 45 6E 74 65 72     1		??0000 BYTE "Enter an input filename: ",0	
 	   20 61 6E 20 69
 	   6E 70 75 74 20
 	   66 69 6C 65 6E
 	   61 6D 65 3A 20
 	   00
- 0000007C		     1		.code
- 0000007C  52		     1		push	edx
- 0000007D  BA 00001457 R     1		mov	edx,OFFSET ??0000
- 00000082  E8 00000000 E     1		call	WriteString
- 00000087  5A		     1		pop	edx
- 00000088  BA 00001394 R	mov edx,OFFSET filenamee
- 0000008D  B9 00000050		mov ecx,SIZEOF filenamee
- 00000092  E8 00000000 E	call ReadString
+ 000000AF		     1		.code
+ 000000AF  52		     1		push	edx
+ 000000B0  BA 00001487 R     1		mov	edx,OFFSET ??0000
+ 000000B5  E8 00000000 E     1		call	WriteString
+ 000000BA  5A		     1		pop	edx
+ 000000BB  BA 00001396 R	mov edx,OFFSET filenamee
+ 000000C0  B9 00000050		mov ecx,SIZEOF filenamee
+ 000000C5  E8 00000000 E	call ReadString
 				; Open the file for input.
- 00000097  BA 00001389 R	mov edx,OFFSET filename
- 0000009C  E8 00000000 E	call OpenInputFile
- 000000A1  A3 000013E4 R	mov fileHandle,eax
+ 000000CA  BA 00001389 R	mov edx,OFFSET filename
+ 000000CF  E8 00000000 E	call OpenInputFile
+ 000000D4  A3 000013E6 R	mov fileHandle,eax
 				; Check for errors.
- 000000A6  83 F8 FF		cmp eax,INVALID_HANDLE_VALUE ; error opening file?
- 000000A9  75 13		jne file_ok ; no: skip
+ 000000D9  83 F8 FF		cmp eax,INVALID_HANDLE_VALUE ; error opening file?
+ 000000DC  75 13		jne file_ok ; no: skip
 				mWrite <"Cannot open file",0dh,0ah>
- 00001471		     1		.data		
- 00001471 43 61 6E 6E 6F     1		??0001 BYTE "Cannot open file",0dh,0ah,0	
+ 000014A1		     1		.data		
+ 000014A1 43 61 6E 6E 6F     1		??0001 BYTE "Cannot open file",0dh,0ah,0	
 	   74 20 6F 70 65
 	   6E 20 66 69 6C
 	   65 0D 0A 00
- 000000AB		     1		.code
- 000000AB  52		     1		push	edx
- 000000AC  BA 00001471 R     1		mov	edx,OFFSET ??0001
- 000000B1  E8 00000000 E     1		call	WriteString
- 000000B6  5A		     1		pop	edx
+ 000000DE		     1		.code
+ 000000DE  52		     1		push	edx
+ 000000DF  BA 000014A1 R     1		mov	edx,OFFSET ??0001
+ 000000E4  E8 00000000 E     1		call	WriteString
+ 000000E9  5A		     1		pop	edx
 				exit ; and quit
- 000000B7  6A 00	   *	    push   +000000000h
- 000000B9  E8 00000000 E   *	    call   ExitProcess
- 000000BE			file_ok:
+ 000000EA  6A 00	   *	    push   +000000000h
+ 000000EC  E8 00000000 E   *	    call   ExitProcess
+ 000000F1			file_ok:
 				; Read the file into a buffer.
- 000000BE  BA 00000000 R	mov edx,OFFSET buffer
- 000000C3  B9 00001389		mov ecx,BUFFER_SIZE
- 000000C8  E8 00000000 E	call ReadFromFile
- 000000CD  73 13		jnc check_buffer_size ; error reading?
+ 000000F1  BA 00000000 R	mov edx,OFFSET buffer
+ 000000F6  B9 00001389		mov ecx,BUFFER_SIZE
+ 000000FB  E8 00000000 E	call ReadFromFile
+ 00000100  73 13		jnc check_buffer_size ; error reading?
 				mWrite "Error reading file. " ; yes: show error message
- 00001484		     1		.data		
- 00001484 45 72 72 6F 72     1		??0002 BYTE "Error reading file. ",0	
+ 000014B4		     1		.data		
+ 000014B4 45 72 72 6F 72     1		??0002 BYTE "Error reading file. ",0	
 	   20 72 65 61 64
 	   69 6E 67 20 66
 	   69 6C 65 2E 20
 	   00
- 000000CF		     1		.code
- 000000CF  52		     1		push	edx
- 000000D0  BA 00001484 R     1		mov	edx,OFFSET ??0002
- 000000D5  E8 00000000 E     1		call	WriteString
- 000000DA  5A		     1		pop	edx
- 000000DB  E8 00000000 E	call WriteWindowsMsg
- 000000E0  EB 4D		jmp close_file
- 000000E2			check_buffer_size:
- 000000E2  3D 00001389		cmp eax,BUFFER_SIZE ; buffer large enough?
- 000000E7  72 0E		jb buf_size_ok ; yes
+ 00000102		     1		.code
+ 00000102  52		     1		push	edx
+ 00000103  BA 000014B4 R     1		mov	edx,OFFSET ??0002
+ 00000108  E8 00000000 E     1		call	WriteString
+ 0000010D  5A		     1		pop	edx
+ 0000010E  E8 00000000 E	call WriteWindowsMsg
+ 00000113  EB 4D		jmp close_file
+ 00000115			check_buffer_size:
+ 00000115  3D 00001389		cmp eax,BUFFER_SIZE ; buffer large enough?
+ 0000011A  72 0E		jb buf_size_ok ; yes
 				mWrite <"Error: Buffer too small for the file",0dh,0ah>
- 00001499		     1		.data		
- 00001499 45 72 72 6F 72     1		??0003 BYTE "Error: Buffer too small for the file",0dh,0ah,0	
+ 000014C9		     1		.data		
+ 000014C9 45 72 72 6F 72     1		??0003 BYTE "Error: Buffer too small for the file",0dh,0ah,0	
 	   3A 20 42 75 66
 	   66 65 72 20 74
 	   6F 6F 20 73 6D
@@ -173,62 +226,55 @@ Min_database.asm(4) : warning A4011:multiple .MODEL directives found : .MODEL ig
 	   6F 72 20 74 68
 	   65 20 66 69 6C
 	   65 0D 0A 00
- 000000E9		     1		.code
- 000000E9  52		     1		push	edx
- 000000EA  BA 00001499 R     1		mov	edx,OFFSET ??0003
- 000000EF  E8 00000000 E     1		call	WriteString
- 000000F4  5A		     1		pop	edx
- 000000F5  EB 42		jmp quit ; and quit
- 000000F7			buf_size_ok:
- 000000F7  C6 80 00000000 R	mov buffer[eax],0 ; insert null terminator
+ 0000011C		     1		.code
+ 0000011C  52		     1		push	edx
+ 0000011D  BA 000014C9 R     1		mov	edx,OFFSET ??0003
+ 00000122  E8 00000000 E     1		call	WriteString
+ 00000127  5A		     1		pop	edx
+ 00000128  EB 42		jmp quit ; and quit
+ 0000012A			buf_size_ok:
+ 0000012A  C6 80 00000000 R	mov buffer[eax],0 ; insert null terminator
 	   00
 				mWrite "File size: "
- 000014C0		     1		.data		
- 000014C0 46 69 6C 65 20     1		??0004 BYTE "File size: ",0	
+ 000014F0		     1		.data		
+ 000014F0 46 69 6C 65 20     1		??0004 BYTE "File size: ",0	
 	   73 69 7A 65 3A
 	   20 00
- 000000FE		     1		.code
- 000000FE  52		     1		push	edx
- 000000FF  BA 000014C0 R     1		mov	edx,OFFSET ??0004
- 00000104  E8 00000000 E     1		call	WriteString
- 00000109  5A		     1		pop	edx
- 0000010A  E8 00000000 E	call WriteDec ; display file size
- 0000010F  E8 00000000 E	call Crlf
+ 00000131		     1		.code
+ 00000131  52		     1		push	edx
+ 00000132  BA 000014F0 R     1		mov	edx,OFFSET ??0004
+ 00000137  E8 00000000 E     1		call	WriteString
+ 0000013C  5A		     1		pop	edx
+ 0000013D  E8 00000000 E	call WriteDec ; display file size
+ 00000142  E8 00000000 E	call Crlf
 
 				; Display the buffer.
 				mWrite <"Buffer:",0dh,0ah,0dh,0ah>
- 000014CC		     1		.data		
- 000014CC 42 75 66 66 65     1		??0005 BYTE "Buffer:",0dh,0ah,0dh,0ah,0	
+ 000014FC		     1		.data		
+ 000014FC 42 75 66 66 65     1		??0005 BYTE "Buffer:",0dh,0ah,0dh,0ah,0	
 	   72 3A 0D 0A 0D
 	   0A 00
- 00000114		     1		.code
- 00000114  52		     1		push	edx
- 00000115  BA 000014CC R     1		mov	edx,OFFSET ??0005
- 0000011A  E8 00000000 E     1		call	WriteString
- 0000011F  5A		     1		pop	edx
- 00000120  BA 00000000 R	mov edx,OFFSET buffer ; display the buffer
- 00000125  E8 00000000 E	call WriteString
- 0000012A  E8 00000000 E	call Crlf
- 0000012F			close_file:
- 0000012F  A1 000013E4 R	mov eax,fileHandle
- 00000134  E8 00000000 E	call CloseFile
- 00000139			quit:
+ 00000147		     1		.code
+ 00000147  52		     1		push	edx
+ 00000148  BA 000014FC R     1		mov	edx,OFFSET ??0005
+ 0000014D  E8 00000000 E     1		call	WriteString
+ 00000152  5A		     1		pop	edx
+ 00000153  BA 00000000 R	mov edx,OFFSET buffer ; display the buffer
+ 00000158  E8 00000000 E	call WriteString
+ 0000015D  E8 00000000 E	call Crlf
+ 00000162			close_file:
+ 00000162  A1 000013E6 R	mov eax,fileHandle
+ 00000167  E8 00000000 E	call CloseFile
+ 0000016C			quit:
 				exit
- 00000139  6A 00	   *	    push   +000000000h
- 0000013B  E8 00000000 E   *	    call   ExitProcess
- 00000140  C3			ret
- 00000141			Rfile endp
+ 0000016C  6A 00	   *	    push   +000000000h
+ 0000016E  E8 00000000 E   *	    call   ExitProcess
+ 00000173  C3			ret
+ 00000174			Rfile endp
+				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
- 00000141			main proc
-				;call  createfile_
- 00000141  E8 FFFFFF36		call Rfile
-				exit
- 00000146  6A 00	   *	    push   +000000000h
- 00000148  E8 00000000 E   *	    call   ExitProcess
-					
- 0000014D			main endp
 				end main
-Microsoft (R) Macro Assembler Version 11.00.50727.1	    12/15/17 01:43:18
+Microsoft (R) Macro Assembler Version 11.00.50727.1	    12/16/17 15:35:09
 Min_database.asm					     Symbols 2 - 1
 
 
@@ -340,8 +386,8 @@ Segments and Groups:
 
 FLAT . . . . . . . . . . . . . .	GROUP
 STACK  . . . . . . . . . . . . .	32 Bit	 00001000 Para	  Stack	  'STACK'	 
-_DATA  . . . . . . . . . . . . .	32 Bit	 000014D8 Para	  Public  'DATA'	
-_TEXT  . . . . . . . . . . . . .	32 Bit	 0000014D Para	  Public  'CODE'	
+_DATA  . . . . . . . . . . . . .	32 Bit	 00001508 Para	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 00000174 Para	  Public  'CODE'	
 
 
 Procedures, parameters, and locals:
@@ -355,6 +401,7 @@ CreateFileA  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External
 CreateOutputFile . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 Crlf . . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 Delay  . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+DisplayMessage . . . . . . . . .	P Near	 0000000C _TEXT	Length= 00000008 Public STDCALL
 DumpMem  . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 DumpRegs . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 ExitProcess  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
@@ -411,12 +458,12 @@ ReadInt  . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External
 ReadKeyFlush . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 ReadKey  . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 ReadString . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
-Rfile  . . . . . . . . . . . . .	P Near	 0000007C _TEXT	Length= 000000C5 Public STDCALL
-  file_ok  . . . . . . . . . . .	L Near	 000000BE _TEXT	
-  check_buffer_size  . . . . . .	L Near	 000000E2 _TEXT	
-  buf_size_ok  . . . . . . . . .	L Near	 000000F7 _TEXT	
-  close_file . . . . . . . . . .	L Near	 0000012F _TEXT	
-  quit . . . . . . . . . . . . .	L Near	 00000139 _TEXT	
+Rfile  . . . . . . . . . . . . .	P Near	 000000AF _TEXT	Length= 000000C5 Public STDCALL
+  file_ok  . . . . . . . . . . .	L Near	 000000F1 _TEXT	
+  check_buffer_size  . . . . . .	L Near	 00000115 _TEXT	
+  buf_size_ok  . . . . . . . . .	L Near	 0000012A _TEXT	
+  close_file . . . . . . . . . .	L Near	 00000162 _TEXT	
+  quit . . . . . . . . . . . . .	L Near	 0000016C _TEXT	
 SetConsoleCursorInfo . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 SetConsoleCursorPosition . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 SetConsoleMode . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
@@ -454,9 +501,11 @@ WriteStackFrame  . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External
 WriteString  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 WriteToFile  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 WriteWindowsMsg  . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
-createfile_  . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 0000007C Public STDCALL
-  file_ok  . . . . . . . . . . .	L Near	 00000025 _TEXT	
-main . . . . . . . . . . . . . .	P Near	 00000141 _TEXT	Length= 0000000C Public STDCALL
+createfile_  . . . . . . . . . .	P Near	 0000002C _TEXT	Length= 00000083 Public STDCALL
+  file_ok  . . . . . . . . . . .	L Near	 00000052 _TEXT	
+encrypt  . . . . . . . . . . . .	P Near	 00000014 _TEXT	Length= 00000018 Public STDCALL
+  Lo . . . . . . . . . . . . . .	L Near	 00000020 _TEXT	
+main . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 0000000C Public STDCALL
 printf . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
 scanf  . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
 wsprintfA  . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
@@ -466,12 +515,12 @@ Symbols:
 
                 N a m e                 Type     Value    Attr
 
-??0000 . . . . . . . . . . . . .	Byte	 00001457 _DATA	
-??0001 . . . . . . . . . . . . .	Byte	 00001471 _DATA	
-??0002 . . . . . . . . . . . . .	Byte	 00001484 _DATA	
-??0003 . . . . . . . . . . . . .	Byte	 00001499 _DATA	
-??0004 . . . . . . . . . . . . .	Byte	 000014C0 _DATA	
-??0005 . . . . . . . . . . . . .	Byte	 000014CC _DATA	
+??0000 . . . . . . . . . . . . .	Byte	 00001487 _DATA	
+??0001 . . . . . . . . . . . . .	Byte	 000014A1 _DATA	
+??0002 . . . . . . . . . . . . .	Byte	 000014B4 _DATA	
+??0003 . . . . . . . . . . . . .	Byte	 000014C9 _DATA	
+??0004 . . . . . . . . . . . . .	Byte	 000014F0 _DATA	
+??0005 . . . . . . . . . . . . .	Byte	 000014FC _DATA	
 @CodeSize  . . . . . . . . . . .	Number	 00000000h   
 @DataSize  . . . . . . . . . . .	Number	 00000000h   
 @Interface . . . . . . . . . . .	Number	 00000003h   
@@ -686,14 +735,16 @@ black  . . . . . . . . . . . . .	Number	 00000000h
 blue . . . . . . . . . . . . . .	Number	 00000001h   
 brown  . . . . . . . . . . . . .	Number	 00000006h   
 buffer . . . . . . . . . . . . .	Byte	 00000000 _DATA	
-bytesWritten . . . . . . . . . .	DWord	 000013EC _DATA	
+bytesWritten . . . . . . . . . .	DWord	 000013EE _DATA	
 cyan . . . . . . . . . . . . . .	Number	 00000003h   
+enroll . . . . . . . . . . . . .	Byte	 0000145B _DATA	
 exit . . . . . . . . . . . . . .	Text   	 INVOKE ExitProcess,0
-fileHandle . . . . . . . . . . .	DWord	 000013E4 _DATA	
-filenamee  . . . . . . . . . . .	Byte	 00001394 _DATA	
+fileHandle . . . . . . . . . . .	DWord	 000013E6 _DATA	
+filenamee  . . . . . . . . . . .	Byte	 00001396 _DATA	
 filename . . . . . . . . . . . .	Byte	 00001389 _DATA	
 gray . . . . . . . . . . . . . .	Number	 00000008h   
 green  . . . . . . . . . . . . .	Number	 00000002h   
+key  . . . . . . . . . . . . . .	Number	 000000FBh   
 lightBlue  . . . . . . . . . . .	Number	 00000009h   
 lightCyan  . . . . . . . . . . .	Number	 0000000Bh   
 lightGray  . . . . . . . . . . .	Number	 00000007h   
@@ -702,10 +753,10 @@ lightMagenta . . . . . . . . . .	Number	 0000000Dh
 lightRed . . . . . . . . . . . .	Number	 0000000Ch   
 magenta  . . . . . . . . . . . .	Number	 00000005h   
 red  . . . . . . . . . . . . . .	Number	 00000004h   
-str1 . . . . . . . . . . . . . .	Byte	 000013F0 _DATA	
-str2 . . . . . . . . . . . . . .	Byte	 00001405 _DATA	
-str3 . . . . . . . . . . . . . .	Byte	 00001429 _DATA	
-stringLength . . . . . . . . . .	DWord	 000013E8 _DATA	
+str1 . . . . . . . . . . . . . .	Byte	 000013F2 _DATA	
+str2 . . . . . . . . . . . . . .	Byte	 00001407 _DATA	
+str3 . . . . . . . . . . . . . .	Byte	 0000142D _DATA	
+stringLength . . . . . . . . . .	DWord	 000013EA _DATA	
 white  . . . . . . . . . . . . .	Number	 0000000Fh   
 wsprintf . . . . . . . . . . . .	Text   	 wsprintfA
 yellow . . . . . . . . . . . . .	Number	 0000000Eh   
