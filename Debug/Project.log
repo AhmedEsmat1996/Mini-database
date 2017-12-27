@@ -1,11 +1,12 @@
-﻿Build started 12/20/2017 3:03:35 AM.
+﻿Build started 12/26/2017 10:05:26 AM.
      1>Project "F:\assembly\mini database\Project.vcxproj" on node 2 (Build target(s)).
        Project file contains ToolsVersion="15.0". This toolset may be unknown or missing, in which case you may be able to resolve this by installing the appropriate version of MSBuild, or the build may have been forced to a particular ToolsVersion for policy reasons. Treating the project as if it had ToolsVersion="4.0". For more information, please see http://go.microsoft.com/fwlink/?LinkId=291333.
      1>_MASM:
          Assembling Min_database.asm...
-         cmd.exe /C "C:\Users\aesma\AppData\Local\Temp\tmp93318e176c8a49c89413ae2b1e613d10.cmd"
+         cmd.exe /C "C:\Users\aesma\AppData\Local\Temp\tmp05fec3146697497c9683c6cc1bf9befa.cmd"
          ml.exe /c /nologo /Sg /Zi /Fo"Debug\Min_database.obj" /Fl"Project.lst" /I "c:\Irvine" /W3 /errorReport:prompt  /TaMin_database.asm
      1>Min_database.asm(4): warning A4011: multiple .MODEL directives found : .MODEL ignored
+     1>Min_database.asm(149): warning A6004: procedure argument or local not referenced : seridl
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\assembly\mini database\Debug\Project.exe" /NOLOGO /LIBPATH:c:\Irvine user32.lib irvine32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\assembly\mini database\Debug\Project.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE:NO /IMPLIB:"F:\assembly\mini database\Debug\Project.lib" /MACHINE:X86 /SAFESEH:NO Debug\Min_database.obj
          Project.vcxproj -> F:\assembly\mini database\Debug\Project.exe
@@ -13,4 +14,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.35
+Time Elapsed 00:00:00.73

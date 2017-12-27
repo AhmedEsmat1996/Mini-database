@@ -7,7 +7,12 @@ key = 251
 .data
 buffer byte BUFFER_SIZE+10 DUP(?)
 arr byte BUFFER_SIZE dup(?)
-filenamee BYTE 80 DUP(?)
+arrr byte 4 dup(?)
+sorted_arr byte BUFFER_SIZE dup(?)
+finalbuffer byte BUFFER_SIZE+10 DUP(?)
+eqcount byte 0
+filenamee BYTE 20 DUP(?)
+filename byte "database_report.txt",0
 newkey byte 3 dup(?)
 keylength dword 0
 fileHandle HANDLE ?
@@ -30,9 +35,118 @@ op5 byte "5-for Generate Full Report. ",0
 sav byte "enter 1 to save all work.",0
 op0 byte "0-for exit. ",0
 enroll byte "Enter Student's ID and Grade seprated by :@: :",0
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;mr.pink
+u dword 0
+u1 dword 0
+TempBuffer BYTE BUFFER_SIZE DUP(?)
+sid byte  '4'
+myind dword  ?
+fileend dword ?
+info byte 13 dup(?)
+report_entery byte "StudentID Student Name Numeric Grade Alphabetic Grade",0dh,0ah,0
+del byte "#",0
+zeft_buffer byte BUFFER_SIZE dup(?)
+addrr dword ?
+counter byte 0
+divident byte 3
+;;;;;;;;
 
 .code
+;-------------------------------------------------------
+; BubbleSort
+; Sort an array of 32-bit signed integers in ascending
+; order, using the bubble sort algorithm.
+; Receives: pointer to array, array size
+; Returns: nothing
+;-------------------------------------------------------
+BubbleSort PROC USES eax ecx esi,
+pArray:PTR Dword,     ; pointer to array
+Count:DWORD           ; array size
+mov ecx,Count
+dec ecx               ; decrement count by 1
+
+L1: push ecx          ; save outer loop count
+mov esi,pArray        ; point to first value
+L2: mov eax,[esi]     ; get array value
+cmp byte ptr [esi+4],'0'
+jb L4
+cmp byte ptr[esi+4],'9'
+ja L4
+cmp [esi+4],eax       ; compare a pair of values
+jg L3                 ; if [ESI] <= [ESI+4], no exchange
+xchg eax,[esi+4]      ; exchange the pair
+mov [esi],eax
+L3: add esi,4         ; move both pointers forward
+loop L2               ; inner loop
+pop ecx               ; retrieve outer loop count
+loop L1               ; else repeat outer loop
+L4: ret
+BubbleSort ENDP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;search with paramters 
+;;offset of id , buffer offset,id size, buffer size,return array offset
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+search proc serid :ptr byte, serbuf :ptr byte, seridl :dword, serbul :dword,fbl :ptr dword,snb :dword, serRBuf :ptr byte
+
+mov esi,serid
+mov edi,serbuf
+push edi
+add edi,4
+mov myind,edi
+
+
+ag:
+add edi,4
+mov esi, serid
+cmp byte ptr[edi],','
+jne NR
+sub edi,4
+mov ecx, 4
+sear:
+
+cmp byte ptr[edi],','
+je NR
+mov dl,[esi]
+mov bl,[edi]
+inc edi
+inc esi
+cmp dl,bl
+jne NR
+ 
+loop sear
+jmp done
+
+NR:
+inc edi
+cmp byte ptr[edi],'#'
+jne NR
+inc edi
+mov myind,edi
+mov ecx,4
+cmp edi, serbul
+je wr
+jmp ag
+
+done:
+mov eax,fbl
+mov edi,myind
+mov esi,serrbuf
+add esi,snb
+l:
+mov bl,[edi]
+mov [esi],bl
+inc esi
+inc edi
+add dword ptr[eax],1
+cmp byte ptr[edi],'#'
+jne l
+wr:
+ret
+search endp
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -81,7 +195,7 @@ jmp lo
 
 
 genfull:
-;call report
+call report
 mwrite "enter 0 to repeat this transaction or else done"
 call readdec
 cmp eax,0
@@ -386,4 +500,223 @@ loop l2
 ret
 addkey endp
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ report proc
+X:
+mwrite "Please Enter File Name : "
+mov edx,offset filenamee
+mov ecx,lengthof filenamee
+call readstring
+;open file 
+mov edx,OFFSET filenamee
+call OpenInputFile
+mov fileHandle,eax
+
+;load file data
+mov edx,OFFSET buffer
+mov ecx,BUFFER_SIZE
+call ReadFromFile
+mov stringLen,eax
+;call encrypt
+
+mwrite "full report sorted by ID(1)/Grade(2): "
+call readdec	
+cmp eax,1
+je IDSORT
+cmp eax,2
+je GRADESort
+mwrite "invalid option try again"
+jmp X
+
+
+IDSORT:
+getallid:
+mov edx ,offset buffer
+mov ecx,lengthof buffer
+mov edi,offset arr
+add edx,3
+lop:
+cmp byte ptr[edx],'#'
+je store_id
+jmp skip
+
+store_id:
+inc edx
+mov ebx," "
+cmp [edx],ebx
+je quit
+push ecx
+mov ecx,4
+
+lo:
+mov bl,[edx]
+mov [edi],bl
+inc edi
+inc edx
+loop lo
+
+pop ecx
+skip:
+inc edx
+loop lop
+
+invoke BubbleSort ,offset arr,lengthof arr
+;;; we should now call search fun to return records in sorted array 
+;;; i will pass to it sorted array
+
+mov ecx,3
+mov esi,0
+llll:
+push ecx
+mov ecx,4
+mov edi,0
+lala:
+mov bl,arr[esi]
+mov arrr[edi],bl
+inc esi
+inc edi
+loop lala
+push esi
+invoke search , offset arrr ,  offset buffer , 4 , lengthof buffer , offset u , u1 , offset finalbuffer
+mov eax,u
+mov u1,eax
+pop esi
+pop ecx
+loop llll
+
+mov edx, offset filename
+call createoutputfile
+mov fileHandle ,eax
+; Check for errors.
+cmp eax, INVALID_HANDLE_VALUE      ; error found?
+jne file_ok                        ; no: skip
+mov edx,OFFSET str1                ; display error
+call DisplayMessage
+exit
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+GRADESort:
+mov edx ,offset buffer
+mov ecx,lengthof buffer
+mov edi,offset arr
+LOOL:
+cmp byte ptr [edx],','
+je cnt
+inc edx
+jmp donne
+
+cnt:
+mov eax,0
+inc counter
+mov al,counter
+div divident
+cmp ah,0
+je donelool
+jmp donne
+
+donelool:
+mov ebx ,0
+inc edx
+mov bl,[edx]
+mov [edi],bl
+inc edi
+donne:
+loop LOOL
+invoke BubbleSort ,offset arr,lengthof arr
+;;;;;test;;;;;
+mov edx,offset arr
+mov ecx,lengthof arr
+call writestring
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+file_ok:
+ 
+    mov eax,fileHandle
+	;mov edx,offset report_entery
+	;mov ecx,lengthof report_entery
+	;call WriteToFile
+	mov edx,OFFSET finalbuffer
+	mov ecx , lengthof   finalbuffer
+	call WriteToFile
+	call CloseFile
+quit:
+ret
+report endp
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;delete
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+delete proc  id :ptr byte, buf :ptr byte, idl :dword, bul :dword, serRBuf :ptr byte
+mov esi,id
+
+mov edi,buf
+push edi
+add edi,1
+mov myind,edi
+
+ag:
+mov eax,idl
+add edi,eax
+
+cmp byte ptr[edi],','
+jne NR1
+sub edi,eax
+mov ecx, idl
+s1:
+
+cmp byte ptr[edi],','
+je NR1
+mov dl,[esi]
+mov bl,[edi]
+inc edi
+inc esi
+cmp dl,bl
+jne NR1
+ 
+loop s1
+jmp dne
+
+NR1:
+inc edi
+cmp byte ptr[edi],'#'
+jne NR1
+inc edi
+mov myind,edi
+mov ecx,4
+cmp edi, bul
+je wr
+jmp ag
+
+dne:
+pop edi
+mov esi,serrbuf
+mov ecx,edi
+add ecx,bul
+l1:
+mov bl,[edi]
+mov [esi],bl
+inc edi
+inc esi
+cmp edi,myind
+jne con
+DR:
+inc edi
+cmp byte ptr[edi],'#'
+jne DR
+inc edi
+con:
+
+cmp edi,ecx
+jne l1
+
+jmp re
+wr:
+mWrite <"invalid id">
+
+re:
+
+ret
+delete endp
+
 end main
