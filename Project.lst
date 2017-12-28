@@ -1,4 +1,4 @@
-Microsoft (R) Macro Assembler Version 11.00.50727.1	    12/26/17 10:05:26
+Microsoft (R) Macro Assembler Version 11.00.50727.1	    12/28/17 11:48:37
 Min_database.asm					     Page 1 - 1
 
 
@@ -36,64 +36,68 @@ Min_database.asm(4) : warning A4011:multiple .MODEL directives found : .MODEL ig
  00001393  00001389 [		arr byte BUFFER_SIZE dup(?)
 	    00
 	   ]
- 0000271C  00000004 [		arrr byte 4 dup(?)
+ 0000271C  00001389 [		conc byte BUFFER_SIZE dup(?)
 	    00
 	   ]
- 00002720  00001389 [		sorted_arr byte BUFFER_SIZE dup(?)
+
+ 00003AA5  00000004 [		arrr byte 4 dup(?)
 	    00
 	   ]
- 00003AA9  00001393 [		finalbuffer byte BUFFER_SIZE+10 DUP(?)
+ 00003AA9  00001389 [		sorted_arr byte BUFFER_SIZE dup(?)
 	    00
 	   ]
- 00004E3C 00			eqcount byte 0
- 00004E3D  00000014 [		filenamee BYTE 20 DUP(?)
+ 00004E32  00001393 [		finalbuffer byte BUFFER_SIZE+10 DUP(?)
 	    00
 	   ]
- 00004E51 64 61 74 61 62	filename byte "database_report.txt",0
+ 000061C5 00			eqcount byte 0
+ 000061C6  00000014 [		filenamee BYTE 20 DUP(?)
+	    00
+	   ]
+ 000061DA 64 61 74 61 62	filename byte "database_report.txt",0
 	   61 73 65 5F 72
 	   65 70 6F 72 74
 	   2E 74 78 74 00
- 00004E65  00000003 [		newkey byte 3 dup(?)
+ 000061EE  00000003 [		newkey byte 3 dup(?)
 	    00
 	   ]
- 00004E68 00000000		keylength dword 0
- 00004E6C 00000000		fileHandle HANDLE ?
- 00004E70 00000000		stringLength Dword ?
- 00004E74 00000000		stringLen Dword 0
- 00004E78 00000000		countbyte Dword 0
+ 000061F1 00000000		keylength dword 0
+ 000061F5 00000000		fileHandle HANDLE ?
+ 000061F9 00000000		stringLength Dword ?
+ 000061FD 00000000		stringLen Dword 0
+ 00006201 00000000		countbyte Dword 0
 
- 00004E7C 00000000		bytesWritten Dword ?
- 00004E80 43 61 6E 6E 6F	str1 BYTE "Cannot create file",0dh,0ah,0
+ 00006205 00000000		bytesWritten Dword ?
+ 00006209 43 61 6E 6E 6F	str1 BYTE "Cannot create file",0dh,0ah,0
 	   74 20 63 72 65
 	   61 74 65 20 66
 	   69 6C 65 0D 0A
 	   00
- 00004E95 5B 70 6C 65 61	keylog BYTE "[please Enter the db-key ]: ",0
+ 0000621E 5B 70 6C 65 61	keylog BYTE "[please Enter the db-key ]: ",0
 	   73 65 20 45 6E
 	   74 65 72 20 74
 	   68 65 20 64 62
 	   2D 6B 65 79 20
 	   5D 3A 20 00
- 00004EB2 45 6E 74 65 72	updatestudent byte "Enter Student ID to Update: ",0
+ 0000623B 45 6E 74 65 72	updatestudent byte "Enter Student ID to Update: ",0
 	   20 53 74 75 64
 	   65 6E 74 20 49
 	   44 20 74 6F 20
 	   55 70 64 61 74
 	   65 3A 20 00
- 00004ECF 45 6E 74 65 72	delstudent byte "Enter Student ID to Delete: ",0
+ 00006258 45 6E 74 65 72	delstudent byte "Enter Student ID to Delete: ",0
 	   20 53 74 75 64
 	   65 6E 74 20 49
 	   44 20 74 6F 20
 	   44 65 6C 65 74
 	   65 3A 20 00
- 00004EEC 45 6E 74 65 72	DisplaySTD byte "Enter Student ID to Display info: ",0
+ 00006275 45 6E 74 65 72	DisplaySTD byte "Enter Student ID to Display info: ",0
 	   20 53 74 75 64
 	   65 6E 74 20 49
 	   44 20 74 6F 20
 	   44 69 73 70 6C
 	   61 79 20 69 6E
 	   66 6F 3A 20 00
- 00004F0F 31 2D 66 6F 72	op1 byte "1-for Enroll Student in existed file. ",0 
+ 00006298 31 2D 66 6F 72	op1 byte "1-for Enroll Student in existed file. ",0 
 	   20 45 6E 72 6F
 	   6C 6C 20 53 74
 	   75 64 65 6E 74
@@ -101,47 +105,47 @@ Min_database.asm(4) : warning A4011:multiple .MODEL directives found : .MODEL ig
 	   78 69 73 74 65
 	   64 20 66 69 6C
 	   65 2E 20 00
- 00004F36 36 2D 66 6F 72	op6 byte "6-for Enroll Student in new file. ",0 
+ 000062BF 36 2D 66 6F 72	op6 byte "6-for Enroll Student in new file. ",0 
 	   20 45 6E 72 6F
 	   6C 6C 20 53 74
 	   75 64 65 6E 74
 	   20 69 6E 20 6E
 	   65 77 20 66 69
 	   6C 65 2E 20 00
- 00004F59 32 2D 66 6F 72	op2 byte "2-for Update Student Data. ",0 
+ 000062E2 32 2D 66 6F 72	op2 byte "2-for Update Student Data. ",0 
 	   20 55 70 64 61
 	   74 65 20 53 74
 	   75 64 65 6E 74
 	   20 44 61 74 61
 	   2E 20 00
- 00004F75 33 2D 66 6F 72	op3 byte "3-for Delete Student Data. ",0  
+ 000062FE 33 2D 66 6F 72	op3 byte "3-for Delete Student Data. ",0  
 	   20 44 65 6C 65
 	   74 65 20 53 74
 	   75 64 65 6E 74
 	   20 44 61 74 61
 	   2E 20 00
- 00004F91 34 2D 66 6F 72	op4 byte "4-for Display it's info. ",0  
+ 0000631A 34 2D 66 6F 72	op4 byte "4-for Display it's info. ",0  
 	   20 44 69 73 70
 	   6C 61 79 20 69
 	   74 27 73 20 69
 	   6E 66 6F 2E 20
 	   00
- 00004FAB 35 2D 66 6F 72	op5 byte "5-for Generate Full Report. ",0
+ 00006334 35 2D 66 6F 72	op5 byte "5-for Generate Full Report. ",0
 	   20 47 65 6E 65
 	   72 61 74 65 20
 	   46 75 6C 6C 20
 	   52 65 70 6F 72
 	   74 2E 20 00
- 00004FC8 65 6E 74 65 72	sav byte "enter 1 to save all work.",0
+ 00006351 65 6E 74 65 72	sav byte "enter 1 to save all work.",0
 	   20 31 20 74 6F
 	   20 73 61 76 65
 	   20 61 6C 6C 20
 	   77 6F 72 6B 2E
 	   00
- 00004FE2 30 2D 66 6F 72	op0 byte "0-for exit. ",0
+ 0000636B 30 2D 66 6F 72	op0 byte "0-for exit. ",0
 	   20 65 78 69 74
 	   2E 20 00
- 00004FEF 45 6E 74 65 72	enroll byte "Enter Student's ID and Grade seprated by :@: :",0
+ 00006378 45 6E 74 65 72	enroll byte "Enter Student's ID and Grade seprated by :@: :",0
 	   20 53 74 75 64
 	   65 6E 74 27 73
 	   20 49 44 20 61
@@ -153,18 +157,20 @@ Min_database.asm(4) : warning A4011:multiple .MODEL directives found : .MODEL ig
 	   3A 00
 				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 				;mr.pink
- 0000501E 00000000		u dword 0
- 00005022 00000000		u1 dword 0
- 00005026  00001389 [		TempBuffer BYTE BUFFER_SIZE DUP(?)
+ 000063A7 00000000		u dword 0
+ 000063AB 00000000		u1 dword 0
+ 000063AF  00001389 [		TempBuffer BYTE BUFFER_SIZE DUP(?)
 	    00
 	   ]
- 000063AF 34			sid byte  '4'
- 000063B0 00000000		myind dword  ?
- 000063B4 00000000		fileend dword ?
- 000063B8  0000000D [		info byte 13 dup(?)
+ 00007738  00000004 [		sid byte 4 dup(?)
 	    00
 	   ]
- 000063C5 53 74 75 64 65	report_entery byte "StudentID Student Name Numeric Grade Alphabetic Grade",0dh,0ah,0
+ 0000773C 00000000		myind dword  ?
+ 00007740 00000000		fileend dword ?
+ 00007744  0000000D [		info byte 13 dup(?)
+	    00
+	   ]
+ 00007751 53 74 75 64 65	report_entery byte "StudentID Student Name Numeric Grade Alphabetic_Grade";,0dh,0ah
 	   6E 74 49 44 20
 	   53 74 75 64 65
 	   6E 74 20 4E 61
@@ -173,19 +179,382 @@ Min_database.asm(4) : warning A4011:multiple .MODEL directives found : .MODEL ig
 	   20 47 72 61 64
 	   65 20 41 6C 70
 	   68 61 62 65 74
-	   69 63 20 47 72
-	   61 64 65 0D 0A
-	   00
- 000063FD 23 00			del byte "#",0
- 000063FF  00001389 [		zeft_buffer byte BUFFER_SIZE dup(?)
+	   69 63 5F 47 72
+	   61 64 65
+ 00007786 23 00			del byte "#",0
+ 00007788  00001389 [		zeft_buffer byte BUFFER_SIZE dup(?)
 	    00
 	   ]
- 00007788 00000000		addrr dword ?
- 0000778C 00			counter byte 0
- 0000778D 03			divident byte 3
+ 00008B11 00000000		addrr dword ?
+ 00008B15 00			counter byte 0
+ 00008B16 03			divident byte 3
 				;;;;;;;;
 
  00000000			.code
+
+				;------------------------------------------------
+				;------------------------------------------------
+				;take student data from user then put it in arr
+				;------------------------------------------------
+ 00000000			inputfromuserr proc
+ 00000000  B9 00001389		mov ecx,BUFFER_SIZE
+ 00000005  BA 00001393 R	mov edx,offset arr
+ 0000000A  B3 23		mov bl,'#'
+ 0000000C  88 1A		mov [edx],bl
+ 0000000E  42			inc edx
+ 0000000F			Loo:
+ 0000000F  B3 2C		mov bl,','	
+				mwrite "please Enter student ID : "
+ 00008B17		     1		.data		
+ 00008B17 70 6C 65 61 73     1		??0000 BYTE "please Enter student ID : ",0	
+	   65 20 45 6E 74
+	   65 72 20 73 74
+	   75 64 65 6E 74
+	   20 49 44 20 3A
+	   20 00
+ 00000011		     1		.code
+ 00000011  52		     1		push	edx
+ 00000012  BA 00008B17 R     1		mov	edx,OFFSET ??0000
+ 00000017  E8 00000000 E     1		call	WriteString
+ 0000001C  5A		     1		pop	edx
+ 0000001D  E8 00000000 E	call readstring
+ 00000022  40			inc eax
+ 00000023  01 05 000061F9 R	add stringLength ,eax
+ 00000029  A1 000061F9 R	mov eax,stringLength
+ 0000002E  88 98 00001393 R	mov arr[eax],bl
+ 00000034  03 D0		add edx,eax
+				mwrite "please Enter student Name : "
+ 00008B32		     1		.data		
+ 00008B32 70 6C 65 61 73     1		??0001 BYTE "please Enter student Name : ",0	
+	   65 20 45 6E 74
+	   65 72 20 73 74
+	   75 64 65 6E 74
+	   20 4E 61 6D 65
+	   20 3A 20 00
+ 00000036		     1		.code
+ 00000036  52		     1		push	edx
+ 00000037  BA 00008B32 R     1		mov	edx,OFFSET ??0001
+ 0000003C  E8 00000000 E     1		call	WriteString
+ 00000041  5A		     1		pop	edx
+ 00000042  E8 00000000 E	call readstring
+ 00000047  40			inc eax
+ 00000048  01 05 000061F9 R	add stringLength ,eax
+ 0000004E  8B 35 000061F9 R	mov esi,stringLength
+ 00000054  88 9E 00001393 R	mov arr[esi],bl
+ 0000005A  03 D0		add edx,eax
+				mwrite "please Enter student Grade : "
+ 00008B4F		     1		.data		
+ 00008B4F 70 6C 65 61 73     1		??0002 BYTE "please Enter student Grade : ",0	
+	   65 20 45 6E 74
+	   65 72 20 73 74
+	   75 64 65 6E 74
+	   20 47 72 61 64
+	   65 20 3A 20 00
+ 0000005C		     1		.code
+ 0000005C  52		     1		push	edx
+ 0000005D  BA 00008B4F R     1		mov	edx,OFFSET ??0002
+ 00000062  E8 00000000 E     1		call	WriteString
+ 00000067  5A		     1		pop	edx
+ 00000068  E8 00000000 E	call readstring
+ 0000006D  01 05 000061F9 R	add stringLength ,eax
+ 00000073  B3 2C		mov bl,','
+ 00000075  03 D0		add edx,eax
+ 00000077  88 1A		mov [edx],bl
+ 00000079  E8 0000004E		call alpha_grade
+ 0000007E  B3 23		mov bl,'#'
+ 00000080  03 D0		add edx,eax
+ 00000082  88 1A		mov [edx],bl
+ 00000084  BA 00001393 R	mov edx,offset arr
+ 00000089  03 15 000061F9 R	add edx,stringLength
+ 0000008F  83 C2 02		add edx,2
+ 00000092  B3 2C		mov bl,','	
+				mwrite"enter another record Y(1)/N(0) : "
+ 00008B6D		     1		.data		
+ 00008B6D 65 6E 74 65 72     1		??0003 BYTE "enter another record Y(1)/N(0) : ",0	
+	   20 61 6E 6F 74
+	   68 65 72 20 72
+	   65 63 6F 72 64
+	   20 59 28 31 29
+	   2F 4E 28 30 29
+	   20 3A 20 00
+ 00000094		     1		.code
+ 00000094  52		     1		push	edx
+ 00000095  BA 00008B6D R     1		mov	edx,OFFSET ??0003
+ 0000009A  E8 00000000 E     1		call	WriteString
+ 0000009F  5A		     1		pop	edx
+ 000000A0  E8 00000000 E	call readdec
+ 000000A5  83 F8 01		cmp eax,1
+ 000000A8  0F 84 FFFFFF61	je Loo
+ 000000AE  83 05 000061F9 R	add stringLength,5
+	   05
+ 000000B5  BE 00001393 R	mov esi,offset arr
+ 000000BA  BF 00000000 R	mov edi,offset buffer
+ 000000BF  B9 00001389		mov ecx,lengthof arr
+ 000000C4  F3/ A4		rep movsb
+ 000000C6  BA 00000000 R	mov edx,offset buffer
+
+ 000000CB  C3			ret
+ 000000CC			inputfromuserr endp
+
+				;------------------------------------------------
+				;
+				;
+				;store alphaptaic in buffer
+				;------------------------------------------------
+				;------------------------------------------------
+ 000000CC			alpha_grade proc
+ 000000CC  66| BB 005A		mov bx,90
+ 000000D0  66| 39 1A		cmp word ptr[edx],bx
+ 000000D3  73 26		jae A
+ 000000D5  66| BB 0050		mov bx,80
+ 000000D9  66| 39 1A		cmp word ptr[edx],bx
+ 000000DC  73 24		jae B
+ 000000DE  66| BB 0046		mov bx,70
+ 000000E2  66| 39 1A		cmp word ptr[edx],bx
+ 000000E5  73 22		jae CC
+ 000000E7  66| BB 003C		mov bx,60
+ 000000EB  66| 39 1A		cmp word ptr[edx],bx 
+ 000000EE  73 20		jae D
+ 000000F0  66| BB 003C		mov bx,60
+ 000000F4  66| 39 1A		cmp word ptr[edx],bx
+ 000000F7  72 1E		jb F
+ 000000F9  EB 23		jmp error
+ 000000FB			A:
+ 000000FB  42			inc edx
+ 000000FC  B3 41		mov bl ,'A'
+ 000000FE  88 1A		mov [edx],bl
+ 00000100  EB 28		jmp done
+ 00000102			B:
+ 00000102  42			inc edx
+ 00000103  B3 42		mov bl ,'B'
+ 00000105  88 1A		mov [edx],bl
+ 00000107  EB 21		jmp done
+ 00000109			CC:
+ 00000109  42			inc edx
+ 0000010A  B3 43		mov bl ,'C'
+ 0000010C  88 1A		mov [edx],bl
+ 0000010E  EB 1A		jmp done
+ 00000110			D:
+ 00000110  42			inc edx
+ 00000111  B3 44		mov bl ,'D'
+ 00000113  88 1A		mov [edx],bl
+ 00000115  EB 13		jmp done
+ 00000117			F:
+ 00000117  42			inc edx
+ 00000118  B3 46		mov bl ,'F'
+ 0000011A  88 1A		mov [edx],bl
+ 0000011C  EB 0C		jmp done
+
+ 0000011E			error: 
+				mwrite"invalid grade please try again later"
+ 00008B8F		     1		.data		
+ 00008B8F 69 6E 76 61 6C     1		??0004 BYTE "invalid grade please try again later",0	
+	   69 64 20 67 72
+	   61 64 65 20 70
+	   6C 65 61 73 65
+	   20 74 72 79 20
+	   61 67 61 69 6E
+	   20 6C 61 74 65
+	   72 00
+ 0000011E		     1		.code
+ 0000011E  52		     1		push	edx
+ 0000011F  BA 00008B8F R     1		mov	edx,OFFSET ??0004
+ 00000124  E8 00000000 E     1		call	WriteString
+ 00000129  5A		     1		pop	edx
+ 0000012A			done:
+ 0000012A  C3			ret
+ 0000012B			alpha_grade endp
+
+
+ 0000012B			update proc id :ptr byte, buf :ptr byte, idl :dword, bul :dword, serRBuf :ptr byte
+
+
+ 0000012B  55		   *	    push   ebp
+ 0000012C  8B EC	   *	    mov    ebp, esp
+ 0000012E  8B 75 08		mov esi,id
+ 00000131  8B 7D 0C		mov edi,buf
+ 00000134  57			push edi
+ 00000135  83 C7 04		add edi,4
+ 00000138  89 3D 0000773C R	mov myind,edi
+
+
+ 0000013E			ag:
+ 0000013E  83 C7 04		add edi,4
+ 00000141  8B 75 08		mov esi, id
+ 00000144  80 3F 2C		cmp byte ptr[edi],','
+ 00000147  75 1B		jne NR
+ 00000149  83 EF 04		sub edi,4
+ 0000014C  B9 00000004		mov ecx, 4
+ 00000151			sear:
+
+ 00000151  80 3F 2C		cmp byte ptr[edi],','
+ 00000154  74 0E		je NR
+ 00000156  8A 16		mov dl,[esi]
+ 00000158  8A 1F		mov bl,[edi]
+ 0000015A  47			inc edi
+ 0000015B  46			inc esi
+ 0000015C  3A D3		cmp dl,bl
+ 0000015E  75 04		jne NR
+				 
+ 00000160  E2 EF		loop sear
+ 00000162  EB 19		jmp dne
+
+ 00000164			NR:
+ 00000164  47			inc edi
+ 00000165  80 3F 23		cmp byte ptr[edi],'#'
+ 00000168  75 FA		jne NR
+ 0000016A  47			inc edi
+ 0000016B  89 3D 0000773C R	mov myind,edi
+ 00000171  B9 00000004		mov ecx,4
+ 00000176  3B 7D 14		cmp edi, bul
+ 00000179  74 3D		je wr
+ 0000017B  EB C1		jmp ag
+
+
+ 0000017D			dne:
+ 0000017D  5F			pop edi
+ 0000017E  8B 75 18		mov esi,serrbuf
+ 00000181  8B CF		mov ecx,edi
+ 00000183  03 4D 14		add ecx,bul
+ 00000186			l1:
+ 00000186  8A 1F		mov bl,[edi]
+ 00000188  88 1E		mov [esi],bl
+ 0000018A  47			inc edi
+ 0000018B  46			inc esi
+ 0000018C  3B 3D 0000773C R	cmp edi,myind
+ 00000192  75 07		jne con
+ 00000194			DR:
+ 00000194  47			inc edi
+ 00000195  80 3F 23		cmp byte ptr[edi],'#'
+ 00000198  75 FA		jne DR
+ 0000019A  47			inc edi
+ 0000019B			con:
+ 0000019B  3B F9		cmp edi,ecx
+ 0000019D  75 E7		jne l1
+
+ 0000019F  56			push esi
+ 000001A0  E8 FFFFFE5B		call inputfromuserr
+ 000001A5  5E			pop esi
+ 000001A6  8B DE		mov ebx ,esi
+ 000001A8  BE 00001393 R	mov esi,offset arr
+ 000001AD  8B FB		mov edi,ebx
+ 000001AF  B9 00001389		mov ecx,lengthof arr
+ 000001B4  F3/ A4		rep movsb
+
+ 000001B6  EB 0C		jmp re
+ 000001B8			wr:
+				mWrite <"invalid id">
+ 00008BB4		     1		.data		
+ 00008BB4 69 6E 76 61 6C     1		??0005 BYTE "invalid id",0	
+	   69 64 20 69 64
+	   00
+ 000001B8		     1		.code
+ 000001B8  52		     1		push	edx
+ 000001B9  BA 00008BB4 R     1		mov	edx,OFFSET ??0005
+ 000001BE  E8 00000000 E     1		call	WriteString
+ 000001C3  5A		     1		pop	edx
+
+ 000001C4			re:
+
+				ret
+ 000001C4  C9		   *	    leave  
+ 000001C5  C2 0014	   *	    ret    00014h
+ 000001C8			update endp
+Min_database.asm(249) : warning A6004:procedure argument or local not referenced : idl
+
+
+
+
+ 000001C8			delete proc  id :ptr byte, buf :ptr byte, idl :dword, bul :dword, serRBuf :ptr byte
+
+
+ 000001C8  55		   *	    push   ebp
+ 000001C9  8B EC	   *	    mov    ebp, esp
+ 000001CB  8B 75 08		mov esi,id
+ 000001CE  8B 7D 0C		mov edi,buf
+ 000001D1  57			push edi
+ 000001D2  83 C7 04		add edi,4
+ 000001D5  89 3D 0000773C R	mov myind,edi
+
+
+ 000001DB			ag:
+ 000001DB  83 C7 04		add edi,4
+ 000001DE  8B 75 08		mov esi, id
+ 000001E1  80 3F 2C		cmp byte ptr[edi],','
+ 000001E4  75 1B		jne NR
+ 000001E6  83 EF 04		sub edi,4
+ 000001E9  B9 00000004		mov ecx, 4
+ 000001EE			sear:
+
+ 000001EE  80 3F 2C		cmp byte ptr[edi],','
+ 000001F1  74 0E		je NR
+ 000001F3  8A 16		mov dl,[esi]
+ 000001F5  8A 1F		mov bl,[edi]
+ 000001F7  47			inc edi
+ 000001F8  46			inc esi
+ 000001F9  3A D3		cmp dl,bl
+ 000001FB  75 04		jne NR
+				 
+ 000001FD  E2 EF		loop sear
+ 000001FF  EB 19		jmp dne
+
+ 00000201			NR:
+ 00000201  47			inc edi
+ 00000202  80 3F 23		cmp byte ptr[edi],'#'
+ 00000205  75 FA		jne NR
+ 00000207  47			inc edi
+ 00000208  89 3D 0000773C R	mov myind,edi
+ 0000020E  B9 00000004		mov ecx,4
+ 00000213  3B 7D 14		cmp edi, bul
+ 00000216  74 30		je wr
+ 00000218  EB C1		jmp ag
+
+
+ 0000021A			dne:
+ 0000021A  5F			pop edi
+ 0000021B  8B 75 18		mov esi,serrbuf
+ 0000021E  8B CF		mov ecx,edi
+ 00000220  03 4D 14		add ecx,bul
+ 00000223			l1:
+ 00000223  8A 1F		mov bl,[edi]
+ 00000225  88 1E		mov [esi],bl
+ 00000227  47			inc edi
+ 00000228  46			inc esi
+ 00000229  3B 3D 0000773C R	cmp edi,myind
+ 0000022F  75 07		jne con
+ 00000231			DR:
+ 00000231  47			inc edi
+ 00000232  80 3F 23		cmp byte ptr[edi],'#'
+ 00000235  75 FA		jne DR
+ 00000237  47			inc edi
+ 00000238			con:
+
+ 00000238  3B F9		cmp edi,ecx
+ 0000023A  75 E7		jne l1
+
+ 0000023C  BA 000063AF R	mov edx,offset tempbuffer
+ 00000241  E8 00000000 E	call writestring
+ 00000246  EB 0C		jmp re
+ 00000248			wr:
+				mWrite <"invalid id">
+ 00008BBF		     1		.data		
+ 00008BBF 69 6E 76 61 6C     1		??0006 BYTE "invalid id",0	
+	   69 64 20 69 64
+	   00
+ 00000248		     1		.code
+ 00000248  52		     1		push	edx
+ 00000249  BA 00008BBF R     1		mov	edx,OFFSET ??0006
+ 0000024E  E8 00000000 E     1		call	WriteString
+ 00000253  5A		     1		pop	edx
+
+ 00000254			re:
+
+				ret
+ 00000254  C9		   *	    leave  
+ 00000255  C2 0014	   *	    ret    00014h
+ 00000258			delete endp
+Min_database.asm(328) : warning A6004:procedure argument or local not referenced : idl
+
 				;-------------------------------------------------------
 				; BubbleSort
 				; Sort an array of 32-bit signed integers in ascending
@@ -193,39 +562,39 @@ Min_database.asm(4) : warning A4011:multiple .MODEL directives found : .MODEL ig
 				; Receives: pointer to array, array size
 				; Returns: nothing
 				;-------------------------------------------------------
- 00000000			BubbleSort PROC USES eax ecx esi,
+ 00000258			BubbleSort PROC USES eax ecx esi,
 				pArray:PTR Dword,     ; pointer to array
 				Count:DWORD           ; array size
- 00000000  55		   *	    push   ebp
- 00000001  8B EC	   *	    mov    ebp, esp
- 00000003  50		   *	    push   eax
- 00000004  51		   *	    push   ecx
- 00000005  56		   *	    push   esi
- 00000006  8B 4D 0C		mov ecx,Count
- 00000009  49			dec ecx               ; decrement count by 1
+ 00000258  55		   *	    push   ebp
+ 00000259  8B EC	   *	    mov    ebp, esp
+ 0000025B  50		   *	    push   eax
+ 0000025C  51		   *	    push   ecx
+ 0000025D  56		   *	    push   esi
+ 0000025E  8B 4D 0C		mov ecx,Count
+ 00000261  49			dec ecx               ; decrement count by 1
 
- 0000000A  51			L1: push ecx          ; save outer loop count
- 0000000B  8B 75 08		mov esi,pArray        ; point to first value
- 0000000E  8B 06		L2: mov eax,[esi]     ; get array value
- 00000010  80 7E 04 30		cmp byte ptr [esi+4],'0'
- 00000014  72 18		jb L4
- 00000016  80 7E 04 39		cmp byte ptr[esi+4],'9'
- 0000001A  77 12		ja L4
- 0000001C  39 46 04		cmp [esi+4],eax       ; compare a pair of values
- 0000001F  7F 05		jg L3                 ; if [ESI] <= [ESI+4], no exchange
- 00000021  87 46 04		xchg eax,[esi+4]      ; exchange the pair
- 00000024  89 06		mov [esi],eax
- 00000026  83 C6 04		L3: add esi,4         ; move both pointers forward
- 00000029  E2 E3		loop L2               ; inner loop
- 0000002B  59			pop ecx               ; retrieve outer loop count
- 0000002C  E2 DC		loop L1               ; else repeat outer loop
- 0000002E			L4: ret
- 0000002E  5E		   *	    pop    esi
- 0000002F  59		   *	    pop    ecx
- 00000030  58		   *	    pop    eax
- 00000031  C9		   *	    leave  
- 00000032  C2 0008	   *	    ret    00008h
- 00000035			BubbleSort ENDP
+ 00000262  51			L1: push ecx          ; save outer loop count
+ 00000263  8B 75 08		mov esi,pArray        ; point to first value
+ 00000266  8B 06		L2: mov eax,[esi]     ; get array value
+ 00000268  80 7E 04 30		cmp byte ptr [esi+4],'0'
+ 0000026C  72 18		jb L4
+ 0000026E  80 7E 04 39		cmp byte ptr[esi+4],'9'
+ 00000272  77 12		ja L4
+ 00000274  39 46 04		cmp [esi+4],eax       ; compare a pair of values
+ 00000277  7F 05		jg L3                 ; if [ESI] <= [ESI+4], no exchange
+ 00000279  87 46 04		xchg eax,[esi+4]      ; exchange the pair
+ 0000027C  89 06		mov [esi],eax
+ 0000027E  83 C6 04		L3: add esi,4         ; move both pointers forward
+ 00000281  E2 E3		loop L2               ; inner loop
+ 00000283  59			pop ecx               ; retrieve outer loop count
+ 00000284  E2 DC		loop L1               ; else repeat outer loop
+ 00000286			L4: ret
+ 00000286  5E		   *	    pop    esi
+ 00000287  59		   *	    pop    ecx
+ 00000288  58		   *	    pop    eax
+ 00000289  C9		   *	    leave  
+ 0000028A  C2 0008	   *	    ret    00008h
+ 0000028D			BubbleSort ENDP
 				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -233,122 +602,122 @@ Min_database.asm(4) : warning A4011:multiple .MODEL directives found : .MODEL ig
 				;;offset of id , buffer offset,id size, buffer size,return array offset
 				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
- 00000035			search proc serid :ptr byte, serbuf :ptr byte, seridl :dword, serbul :dword,fbl :ptr dword,snb :dword, serRBuf :ptr byte
+ 0000028D			search proc serid :ptr byte, serbuf :ptr byte, seridl :dword, serbul :dword,fbl :ptr dword,snb :dword, serRBuf :ptr byte
 
- 00000035  55		   *	    push   ebp
- 00000036  8B EC	   *	    mov    ebp, esp
- 00000038  8B 75 08		mov esi,serid
- 0000003B  8B 7D 0C		mov edi,serbuf
- 0000003E  57			push edi
- 0000003F  83 C7 04		add edi,4
- 00000042  89 3D 000063B0 R	mov myind,edi
+ 0000028D  55		   *	    push   ebp
+ 0000028E  8B EC	   *	    mov    ebp, esp
+ 00000290  8B 75 08		mov esi,serid
+ 00000293  8B 7D 0C		mov edi,serbuf
+ 00000296  57			push edi
+ 00000297  83 C7 04		add edi,4
+ 0000029A  89 3D 0000773C R	mov myind,edi
 
 
- 00000048			ag:
- 00000048  83 C7 04		add edi,4
- 0000004B  8B 75 08		mov esi, serid
- 0000004E  80 3F 2C		cmp byte ptr[edi],','
- 00000051  75 1B		jne NR
- 00000053  83 EF 04		sub edi,4
- 00000056  B9 00000004		mov ecx, 4
- 0000005B			sear:
+ 000002A0			ag:
+ 000002A0  83 C7 04		add edi,4
+ 000002A3  8B 75 08		mov esi, serid
+ 000002A6  80 3F 2C		cmp byte ptr[edi],','
+ 000002A9  75 1B		jne NR
+ 000002AB  83 EF 04		sub edi,4
+ 000002AE  B9 00000004		mov ecx, 4
+ 000002B3			sear:
 
- 0000005B  80 3F 2C		cmp byte ptr[edi],','
- 0000005E  74 0E		je NR
- 00000060  8A 16		mov dl,[esi]
- 00000062  8A 1F		mov bl,[edi]
- 00000064  47			inc edi
- 00000065  46			inc esi
- 00000066  3A D3		cmp dl,bl
- 00000068  75 04		jne NR
+ 000002B3  80 3F 2C		cmp byte ptr[edi],','
+ 000002B6  74 0E		je NR
+ 000002B8  8A 16		mov dl,[esi]
+ 000002BA  8A 1F		mov bl,[edi]
+ 000002BC  47			inc edi
+ 000002BD  46			inc esi
+ 000002BE  3A D3		cmp dl,bl
+ 000002C0  75 04		jne NR
 				 
- 0000006A  E2 EF		loop sear
- 0000006C  EB 19		jmp done
+ 000002C2  E2 EF		loop sear
+ 000002C4  EB 19		jmp done
 
- 0000006E			NR:
- 0000006E  47			inc edi
- 0000006F  80 3F 23		cmp byte ptr[edi],'#'
- 00000072  75 FA		jne NR
- 00000074  47			inc edi
- 00000075  89 3D 000063B0 R	mov myind,edi
- 0000007B  B9 00000004		mov ecx,4
- 00000080  3B 7D 14		cmp edi, serbul
- 00000083  74 1F		je wr
- 00000085  EB C1		jmp ag
+ 000002C6			NR:
+ 000002C6  47			inc edi
+ 000002C7  80 3F 23		cmp byte ptr[edi],'#'
+ 000002CA  75 FA		jne NR
+ 000002CC  47			inc edi
+ 000002CD  89 3D 0000773C R	mov myind,edi
+ 000002D3  B9 00000004		mov ecx,4
+ 000002D8  3B 7D 14		cmp edi, serbul
+ 000002DB  74 1F		je wr
+ 000002DD  EB C1		jmp ag
 
- 00000087			done:
- 00000087  8B 45 18		mov eax,fbl
- 0000008A  8B 3D 000063B0 R	mov edi,myind
- 00000090  8B 75 20		mov esi,serrbuf
- 00000093  03 75 1C		add esi,snb
- 00000096			l:
- 00000096  8A 1F		mov bl,[edi]
- 00000098  88 1E		mov [esi],bl
- 0000009A  46			inc esi
- 0000009B  47			inc edi
- 0000009C  83 00 01		add dword ptr[eax],1
- 0000009F  80 3F 23		cmp byte ptr[edi],'#'
- 000000A2  75 F2		jne l
- 000000A4			wr:
+ 000002DF			done:
+ 000002DF  8B 45 18		mov eax,fbl
+ 000002E2  8B 3D 0000773C R	mov edi,myind
+ 000002E8  8B 75 20		mov esi,serrbuf
+ 000002EB  03 75 1C		add esi,snb
+ 000002EE			l:
+ 000002EE  8A 1F		mov bl,[edi]
+ 000002F0  88 1E		mov [esi],bl
+ 000002F2  46			inc esi
+ 000002F3  47			inc edi
+ 000002F4  83 00 01		add dword ptr[eax],1
+ 000002F7  80 3F 23		cmp byte ptr[edi],'#'
+ 000002FA  75 F2		jne l
+ 000002FC			wr:
 				ret
- 000000A4  C9		   *	    leave  
- 000000A5  C2 001C	   *	    ret    0001Ch
- 000000A8			search endp
-Min_database.asm(149) : warning A6004:procedure argument or local not referenced : seridl
+ 000002FC  C9		   *	    leave  
+ 000002FD  C2 001C	   *	    ret    0001Ch
+ 00000300			search endp
+Min_database.asm(423) : warning A6004:procedure argument or local not referenced : seridl
 
 				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
- 000000A8			main proc
- 000000A8  BA 00004F0F R	mov edx,offset op1
- 000000AD  E8 00000174		call DisplayMessage
- 000000B2  BA 00004F36 R	mov edx,offset op6
- 000000B7  E8 0000016A		call DisplayMessage
- 000000BC  BA 00004F59 R	mov edx,offset op2
- 000000C1  E8 00000160		call DisplayMessage
- 000000C6  BA 00004F75 R	mov edx,offset op3
- 000000CB  E8 00000156		call DisplayMessage
- 000000D0  BA 00004F91 R	mov edx,offset op4
- 000000D5  E8 0000014C		call DisplayMessage
- 000000DA  BA 00004FAB R	mov edx,offset op5
- 000000DF  E8 00000142		call DisplayMessage
- 000000E4  BA 00004FE2 R	mov edx,offset op0
- 000000E9  E8 00000138		call DisplayMessage
- 000000EE  E8 00000007		call comparing
+ 00000300			main proc
+ 00000300  BA 00006298 R	mov edx,offset op1
+ 00000305  E8 0000025C		call DisplayMessage
+ 0000030A  BA 000062BF R	mov edx,offset op6
+ 0000030F  E8 00000252		call DisplayMessage
+ 00000314  BA 000062E2 R	mov edx,offset op2
+ 00000319  E8 00000248		call DisplayMessage
+ 0000031E  BA 000062FE R	mov edx,offset op3
+ 00000323  E8 0000023E		call DisplayMessage
+ 00000328  BA 0000631A R	mov edx,offset op4
+ 0000032D  E8 00000234		call DisplayMessage
+ 00000332  BA 00006334 R	mov edx,offset op5
+ 00000337  E8 0000022A		call DisplayMessage
+ 0000033C  BA 0000636B R	mov edx,offset op0
+ 00000341  E8 00000220		call DisplayMessage
+ 00000346  E8 00000007		call comparing
 				exit
- 000000F3  6A 00	   *	    push   +000000000h
- 000000F5  E8 00000000 E   *	    call   ExitProcess
- 000000FA			main endp
+ 0000034B  6A 00	   *	    push   +000000000h
+ 0000034D  E8 00000000 E   *	    call   ExitProcess
+ 00000352			main endp
 				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 				;;comparing  input  proc for startup
 				;;
 				;;
 				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
- 000000FA			comparing proc
- 000000FA  60			pushad
- 000000FB			lo:
- 000000FB  E8 00000000 E	call readdec
- 00000100  83 F8 00		cmp eax ,0
- 00000103  0F 84 0000010A	je done
- 00000109  83 F8 01		cmp eax,1
- 0000010C  0F 84 000000AC	je  enstd
- 00000112  83 F8 02		cmp eax,2
- 00000115  74 6C		je upstd
- 00000117  83 F8 03		cmp eax,3
- 0000011A  74 4C		je delstd
- 0000011C  83 F8 04		cmp eax,4
- 0000011F  74 2C		je disstd
- 00000121  83 F8 05		cmp eax,5
- 00000124  74 07		je genfull
- 00000126  83 F8 06		cmp eax,6
- 00000129  74 70		je enrollnewstudentwithfile
- 0000012B  EB CE		jmp lo
+ 00000352			comparing proc
+ 00000352  60			pushad
+ 00000353			lo:
+ 00000353  E8 00000000 E	call readdec
+ 00000358  83 F8 00		cmp eax ,0
+ 0000035B  0F 84 000001ED	je done
+ 00000361  83 F8 01		cmp eax,1
+ 00000364  0F 84 00000188	je  enstd
+ 0000036A  83 F8 02		cmp eax,2
+ 0000036D  0F 84 00000114	je upstd
+ 00000373  83 F8 03		cmp eax,3
+ 00000376  0F 84 000000A5	je delstd
+ 0000037C  83 F8 04		cmp eax,4
+ 0000037F  74 30		je disstd
+ 00000381  83 F8 05		cmp eax,5
+ 00000384  74 0B		je genfull
+ 00000386  83 F8 06		cmp eax,6
+ 00000389  0F 84 00000141	je enrollnewstudentwithfile
+ 0000038F  EB C2		jmp lo
 
 
- 0000012D			genfull:
- 0000012D  E8 0000038F		call report
+ 00000391			genfull:
+ 00000391  E8 00000474		call report
 				mwrite "enter 0 to repeat this transaction or else done"
- 0000778E		     1		.data		
- 0000778E 65 6E 74 65 72     1		??0000 BYTE "enter 0 to repeat this transaction or else done",0	
+ 00008BCA		     1		.data		
+ 00008BCA 65 6E 74 65 72     1		??0007 BYTE "enter 0 to repeat this transaction or else done",0	
 	   20 30 20 74 6F
 	   20 72 65 70 65
 	   61 74 20 74 68
@@ -358,90 +727,157 @@ Min_database.asm(149) : warning A6004:procedure argument or local not referenced
 	   6F 72 20 65 6C
 	   73 65 20 64 6F
 	   6E 65 00
- 00000132		     1		.code
- 00000132  52		     1		push	edx
- 00000133  BA 0000778E R     1		mov	edx,OFFSET ??0000
- 00000138  E8 00000000 E     1		call	WriteString
- 0000013D  5A		     1		pop	edx
- 0000013E  E8 00000000 E	call readdec
- 00000143  83 F8 00		cmp eax,0
- 00000146  74 E5		je genfull
- 00000148  E9 000000C6		jmp done
- 0000014D			disstd:
-				;call displayinfo
-				mwrite "enter 0 to repeat this transaction or else done"
- 000077BE		     1		.data		
- 000077BE 65 6E 74 65 72     1		??0001 BYTE "enter 0 to repeat this transaction or else done",0	
-	   20 30 20 74 6F
-	   20 72 65 70 65
-	   61 74 20 74 68
-	   69 73 20 74 72
-	   61 6E 73 61 63
-	   74 69 6F 6E 20
-	   6F 72 20 65 6C
-	   73 65 20 64 6F
-	   6E 65 00
- 0000014D		     1		.code
- 0000014D  52		     1		push	edx
- 0000014E  BA 000077BE R     1		mov	edx,OFFSET ??0001
- 00000153  E8 00000000 E     1		call	WriteString
- 00000158  5A		     1		pop	edx
- 00000159  E8 00000000 E	call readdec
- 0000015E  83 F8 00		cmp eax,0
- 00000161  74 EA		je disstd
- 00000163  E9 000000AB		jmp done
- 00000168			delstd:
-				;call deletestudent
-				mwrite "enter 0 to repeat this transaction or else done"
- 000077EE		     1		.data		
- 000077EE 65 6E 74 65 72     1		??0002 BYTE "enter 0 to repeat this transaction or else done",0	
-	   20 30 20 74 6F
-	   20 72 65 70 65
-	   61 74 20 74 68
-	   69 73 20 74 72
-	   61 6E 73 61 63
-	   74 69 6F 6E 20
-	   6F 72 20 65 6C
-	   73 65 20 64 6F
-	   6E 65 00
- 00000168		     1		.code
- 00000168  52		     1		push	edx
- 00000169  BA 000077EE R     1		mov	edx,OFFSET ??0002
- 0000016E  E8 00000000 E     1		call	WriteString
- 00000173  5A		     1		pop	edx
- 00000174  E8 00000000 E	call readdec
- 00000179  83 F8 00		cmp eax,0
- 0000017C  74 EA		je delstd
- 0000017E  E9 00000090		jmp done
- 00000183			upstd:
-				;call updatestudent
-				mwrite "enter 0 to repeat this transaction or else done"
- 0000781E		     1		.data		
- 0000781E 65 6E 74 65 72     1		??0003 BYTE "enter 0 to repeat this transaction or else done",0	
-	   20 30 20 74 6F
-	   20 72 65 70 65
-	   61 74 20 74 68
-	   69 73 20 74 72
-	   61 6E 73 61 63
-	   74 69 6F 6E 20
-	   6F 72 20 65 6C
-	   73 65 20 64 6F
-	   6E 65 00
- 00000183		     1		.code
- 00000183  52		     1		push	edx
- 00000184  BA 0000781E R     1		mov	edx,OFFSET ??0003
- 00000189  E8 00000000 E     1		call	WriteString
- 0000018E  5A		     1		pop	edx
- 0000018F  E8 00000000 E	call readdec
- 00000194  83 F8 00		cmp eax,0
- 00000197  74 EA		je upstd
- 00000199  EB 78		jmp done
+ 00000396		     1		.code
+ 00000396  52		     1		push	edx
+ 00000397  BA 00008BCA R     1		mov	edx,OFFSET ??0007
+ 0000039C  E8 00000000 E     1		call	WriteString
+ 000003A1  5A		     1		pop	edx
+ 000003A2  E8 00000000 E	call readdec
+ 000003A7  83 F8 00		cmp eax,0
+ 000003AA  74 E5		je genfull
+ 000003AC  E9 0000019B		jmp donny
 
- 0000019B			enrollnewstudentwithfile:
- 0000019B  E8 0000010F		call enrollstd
+
+
+ 000003B1			disstd:
+ 000003B1  E8 0000032D		call ofile 
+
+				mwrite"please Enter the student ID in 4 digits ex:0055 : "
+ 00008BFA		     1		.data		
+ 00008BFA 70 6C 65 61 73     1		??0008 BYTE "please Enter the student ID in 4 digits ex:0055 : ",0	
+	   65 20 45 6E 74
+	   65 72 20 74 68
+	   65 20 73 74 75
+	   64 65 6E 74 20
+	   49 44 20 69 6E
+	   20 34 20 64 69
+	   67 69 74 73 20
+	   65 78 3A 30 30
+	   35 35 20 3A 20
+	   00
+ 000003B6		     1		.code
+ 000003B6  52		     1		push	edx
+ 000003B7  BA 00008BFA R     1		mov	edx,OFFSET ??0008
+ 000003BC  E8 00000000 E     1		call	WriteString
+ 000003C1  5A		     1		pop	edx
+ 000003C2  BA 00007738 R	mov edx,offset sid
+
+ 000003C7  BF 00000000 R	mov edi,offset buffer
+ 000003CC  B9 00000005		mov ecx,5
+ 000003D1  E8 00000000 E	call readstring
+ 000003D6  C7 05 000063AB R	mov u1,0
+	   00000000
+				invoke search , offset sid ,  offset buffer , 4 , stringLen, offset u , u1 , offset finalbuffer
+ 000003E0  68 00004E32 R   *	    push   dword  ptr OFFSET FLAT: finalbuffer
+ 000003E5  FF 35 000063AB R *	    push   u1
+ 000003EB  68 000063A7 R   *	    push   dword  ptr OFFSET FLAT: u
+ 000003F0  FF 35 000061FD R *	    push   stringLen
+ 000003F6  6A 04	   *	    push   +000000004h
+ 000003F8  68 00000000 R   *	    push   dword  ptr OFFSET FLAT: buffer
+ 000003FD  68 00007738 R   *	    push   dword  ptr OFFSET FLAT: sid
+ 00000402  E8 FFFFFE86	   *	    call   search
+ 00000407  8B 0D 000063A7 R	mov ecx,u
+ 0000040D  BA 00004E32 R	mov edx,offset finalbuffer
+ 00000412  E8 00000000 E		call writestring
+ 00000417  E8 00000000 E		call crlf
+ 0000041C  E9 0000013C			jmp endy
+
+
+
+
+
+ 00000421				delstd:
+ 00000421  E8 000002BD			call ofile
+ 00000426  BA 00000000 R		mov edx, offset buffer
+				mwrite "please enter student ID like 0055:"
+ 00008C2D		     1		.data		
+ 00008C2D 70 6C 65 61 73     1		??0009 BYTE "please enter student ID like 0055:",0	
+	   65 20 65 6E 74
+	   65 72 20 73 74
+	   75 64 65 6E 74
+	   20 49 44 20 6C
+	   69 6B 65 20 30
+	   30 35 35 3A 00
+ 0000042B		     1		.code
+ 0000042B  52		     1		push	edx
+ 0000042C  BA 00008C2D R     1		mov	edx,OFFSET ??0009
+ 00000431  E8 00000000 E     1		call	WriteString
+ 00000436  5A		     1		pop	edx
+ 00000437  BA 00007738 R	mov edx, offset sid
+ 0000043C  B9 00000005		mov ecx,5
+ 00000441  E8 00000000 E	call readstring
+ 00000446  BA 00000000 R	mov edx, offset buffer
+ 0000044B  E8 00000000 E	call writestring
+				invoke delete,offset sid,offset buffer,4,stringLen, offset finalbuffer
+ 00000450  68 00004E32 R   *	    push   dword  ptr OFFSET FLAT: finalbuffer
+ 00000455  FF 35 000061FD R *	    push   stringLen
+ 0000045B  6A 04	   *	    push   +000000004h
+ 0000045D  68 00000000 R   *	    push   dword  ptr OFFSET FLAT: buffer
+ 00000462  68 00007738 R   *	    push   dword  ptr OFFSET FLAT: sid
+ 00000467  E8 FFFFFD5C	   *	    call   delete
+ 0000046C  BE 00004E32 R	mov esi,offset finalbuffer
+ 00000471  BF 00000000 R	mov edi,offset buffer
+ 00000476  B9 00001393		mov ecx,lengthof buffer
+ 0000047B  BF 00000003		mov edi,3
+ 00000480  F3/ A4		rep movsb
+ 00000482  E8 00000331		call addkey
+				;
+					;mov edx, offset filenamee
+				;call createoutputfile
+				;mov fileHandle ,eax
+				;
+				;mov eax,fileHandle
+					;mov edx,OFFSET buffer
+					;mov ecx , stringLen
+					;call WriteToFile
+					;call CloseFile
+				;
+				;jmp done
+
+
+
+ 00000487			upstd:
+
+				mwrite "enter id in 4 digits : "
+ 00008C50		     1		.data		
+ 00008C50 65 6E 74 65 72     1		??000A BYTE "enter id in 4 digits : ",0	
+	   20 69 64 20 69
+	   6E 20 34 20 64
+	   69 67 69 74 73
+	   20 3A 20 00
+ 00000487		     1		.code
+ 00000487  52		     1		push	edx
+ 00000488  BA 00008C50 R     1		mov	edx,OFFSET ??000A
+ 0000048D  E8 00000000 E     1		call	WriteString
+ 00000492  5A		     1		pop	edx
+ 00000493  BA 00007738 R	mov edx, offset sid
+ 00000498  B9 00000005		mov ecx,5
+ 0000049D  E8 00000000 E	call readstring
+
+				invoke update , offset sid, offset buffer, 4, lengthof buffer, offset finalbuffer
+ 000004A2  68 00004E32 R   *	    push   dword  ptr OFFSET FLAT: finalbuffer
+ 000004A7  68 00001393	   *	    push   +000001393h
+ 000004AC  6A 04	   *	    push   +000000004h
+ 000004AE  68 00000000 R   *	    push   dword  ptr OFFSET FLAT: buffer
+ 000004B3  68 00007738 R   *	    push   dword  ptr OFFSET FLAT: sid
+ 000004B8  E8 FFFFFC6E	   *	    call   update
+ 000004BD  BE 00004E32 R	mov esi,offset finalbuffer
+ 000004C2  BF 00000000 R	mov edi,offset buffer
+ 000004C7  B9 00001393		mov ecx,lengthof finalbuffer
+ 000004CC  F3/ A4		rep movsb
+ 000004CE  74 7E		je done
+
+
+
+
+ 000004D0			enrollnewstudentwithfile:
+ 000004D0  BA 00000000 R	mov edx,offset buffer
+ 000004D5			pool:
+ 000004D5  E8 00000115		call enrollstd
+
 				mwrite "enter 0 to repeat this transaction or else done"
- 0000784E		     1		.data		
- 0000784E 65 6E 74 65 72     1		??0004 BYTE "enter 0 to repeat this transaction or else done",0	
+ 00008C68		     1		.data		
+ 00008C68 65 6E 74 65 72     1		??000B BYTE "enter 0 to repeat this transaction or else done",0	
 	   20 30 20 74 6F
 	   20 72 65 70 65
 	   61 74 20 74 68
@@ -451,43 +887,41 @@ Min_database.asm(149) : warning A6004:procedure argument or local not referenced
 	   6F 72 20 65 6C
 	   73 65 20 64 6F
 	   6E 65 00
- 000001A0		     1		.code
- 000001A0  52		     1		push	edx
- 000001A1  BA 0000784E R     1		mov	edx,OFFSET ??0004
- 000001A6  E8 00000000 E     1		call	WriteString
- 000001AB  5A		     1		pop	edx
- 000001AC  E8 00000000 E	call readdec
- 000001B1  83 F8 00		cmp eax,0
- 000001B4  74 E5		je enrollnewstudentwithfile
- 000001B6  61			popad
-				exit
- 000001B7  6A 00	   *	    push   +000000000h
- 000001B9  E8 00000000 E   *	    call   ExitProcess
+ 000004DA		     1		.code
+ 000004DA  52		     1		push	edx
+ 000004DB  BA 00008C68 R     1		mov	edx,OFFSET ??000B
+ 000004E0  E8 00000000 E     1		call	WriteString
+ 000004E5  5A		     1		pop	edx
+ 000004E6  E8 00000000 E	call readdec
+ 000004EB  83 F8 00		cmp eax,0
+ 000004EE  74 E5		je pool
+ 000004F0  EB 66		jmp createnewfileend
 
- 000001BE			enstd:
+
+
+
+ 000004F2			enstd:
 				;return stringLen 
- 000001BE  E8 000001DC		call ofile
- 000001C3  E8 0000006B		call encrypt
- 000001C8			enstudent:
+ 000004F2  E8 000001EC		call ofile
+ 000004F7			enstudent:
 				;return stringLength
- 000001C8  E8 000001B3		call inputfromuser
- 000001CD  BF 00001393 R	mov edi,offset arr
- 000001D2  BE 00000000 R	mov esi,offset buffer
- 000001D7  03 35 00004E74 R	add esi,stringLen
- 000001DD  8B 0D 00004E70 R	mov ecx,stringLength
-
- 000001E3			lol:
- 000001E3  8A 1F		mov bl,[edi]
- 000001E5  88 1E		mov [esi],bl
- 000001E7  47			inc edi
- 000001E8  46			inc esi
- 000001E9  E2 F8		loop lol
- 000001EB  8B 1D 00004E74 R	mov ebx,stringLen
- 000001F1  03 1D 00004E70 R	add ebx,stringLength
- 000001F7  89 1D 00004E74 R	mov stringLen,ebx
+ 000004F7  E8 000001C8		call inputfromuser
+ 000004FC  BF 00001393 R	mov edi,offset arr
+ 00000501  BE 00000000 R	mov esi,offset buffer
+ 00000506  03 35 000061FD R	add esi,stringLen
+ 0000050C  8B 0D 000061F9 R	mov ecx,stringLength
+ 00000512			lol:
+ 00000512  8A 1F		mov bl,[edi]
+ 00000514  88 1E		mov [esi],bl
+ 00000516  47			inc edi
+ 00000517  46			inc esi
+ 00000518  E2 F8		loop lol
+ 0000051A  8B 1D 000061FD R	mov ebx,stringLen
+ 00000520  03 1D 000061F9 R	add ebx,stringLength
+ 00000526  89 1D 000061FD R	mov stringLen,ebx
 				mwrite "enter 0 to repeat this transaction or else done"
- 0000787E		     1		.data		
- 0000787E 65 6E 74 65 72     1		??0005 BYTE "enter 0 to repeat this transaction or else done",0	
+ 00008C98		     1		.data		
+ 00008C98 65 6E 74 65 72     1		??000C BYTE "enter 0 to repeat this transaction or else done",0	
 	   20 30 20 74 6F
 	   20 72 65 70 65
 	   61 74 20 74 68
@@ -497,135 +931,148 @@ Min_database.asm(149) : warning A6004:procedure argument or local not referenced
 	   6F 72 20 65 6C
 	   73 65 20 64 6F
 	   6E 65 00
- 000001FD		     1		.code
- 000001FD  52		     1		push	edx
- 000001FE  BA 0000787E R     1		mov	edx,OFFSET ??0005
- 00000203  E8 00000000 E     1		call	WriteString
- 00000208  5A		     1		pop	edx
- 00000209  E8 00000000 E	call readdec
- 0000020E  83 F8 00		cmp eax,0
- 00000211  74 B5		je enstudent
- 00000213			done:
- 00000213  E8 0000001B		call encrypt
- 00000218  E8 00000050		call createfile_
- 0000021D  61			popad
+ 0000052C		     1		.code
+ 0000052C  52		     1		push	edx
+ 0000052D  BA 00008C98 R     1		mov	edx,OFFSET ??000C
+ 00000532  E8 00000000 E     1		call	WriteString
+ 00000537  5A		     1		pop	edx
+ 00000538  E8 00000000 E	call readdec
+ 0000053D  83 F8 00		cmp eax,0
+ 00000540  74 B5		je enstudent
+ 00000542  E8 00000066		call createfile_
+ 00000547  E8 00000027		call encrypt
+ 0000054C			donny:
+ 0000054C  EB 0F		jmp endy
+ 0000054E			done:
+ 0000054E  E8 00000020		call encrypt
+ 00000553  E8 00000055		call createfile_
+
+ 00000558			createnewfileend:
+				;call encrypt
+ 00000558  E8 000000E5		call createfileonly
+ 0000055D			endy:
+ 0000055D  61			popad
 				exit
- 0000021E  6A 00	   *	    push   +000000000h
- 00000220  E8 00000000 E   *	    call   ExitProcess
- 00000225  C3			ret
- 00000226			comparing endp
+ 0000055E  6A 00	   *	    push   +000000000h
+ 00000560  E8 00000000 E   *	    call   ExitProcess
+ 00000565  C3			ret
+ 00000566			comparing endp
 
 
 				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 				;;paramter : take offset in edx and display 
 				;;
 				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
- 00000226			DisplayMessage PROC
+ 00000566			DisplayMessage PROC
 				;display the message
- 00000226  60			pushad
- 00000227  E8 00000000 E	call writestring
- 0000022C  E8 00000000 E	call Crlf
- 00000231  61			popad
- 00000232  C3			ret
- 00000233			DisplayMessage endp
+ 00000566  60			pushad
+ 00000567  E8 00000000 E	call writestring
+ 0000056C  E8 00000000 E	call Crlf
+ 00000571  61			popad
+ 00000572  C3			ret
+ 00000573			DisplayMessage endp
 				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 				;;proc to encrypt and decrypt using XOR instruction
 				;;
 				;;
 				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
- 00000233			encrypt proc
- 00000233  60			pushad
- 00000234  8B 0D 00004E74 R	mov ecx,stringLen
- 0000023A  83 F9 00		cmp ecx,0
- 0000023D  74 2C		je done
- 0000023F  BE 00000000		mov esi,0
- 00000244			Lo:
- 00000244  80 B6 00000000 R	xor buffer[esi],key ; translate a byte
+ 00000573			encrypt proc
+ 00000573  60			pushad
+ 00000574  8B 0D 000061FD R	mov ecx,stringLen
+ 0000057A  83 F9 00		cmp ecx,0
+ 0000057D  74 2C		je done
+ 0000057F  BE 00000000		mov esi,0
+ 00000584			Lo:
+ 00000584  80 B6 00000000 R	xor buffer[esi],key ; translate a byte
 	   FB
- 0000024B  46			inc esi
- 0000024C  E2 F6		loop Lo
- 0000024E  EB 1B		jmp done
+ 0000058B  46			inc esi
+ 0000058C  E2 F6		loop Lo
+ 0000058E  EB 1B		jmp done
 				mWrite <"Buffer:",0dh,0ah,0dh,0ah>
- 000078AE		     1		.data		
- 000078AE 42 75 66 66 65     1		??0006 BYTE "Buffer:",0dh,0ah,0dh,0ah,0	
+ 00008CC8		     1		.data		
+ 00008CC8 42 75 66 66 65     1		??000D BYTE "Buffer:",0dh,0ah,0dh,0ah,0	
 	   72 3A 0D 0A 0D
 	   0A 00
- 00000250		     1		.code
- 00000250  52		     1		push	edx
- 00000251  BA 000078AE R     1		mov	edx,OFFSET ??0006
- 00000256  E8 00000000 E     1		call	WriteString
- 0000025B  5A		     1		pop	edx
- 0000025C  BA 00000000 R	mov edx,OFFSET buffer                ; display the buffer
- 00000261  E8 00000000 E	call WriteString
- 00000266  E8 00000000 E	call Crlf
- 0000026B			done:
- 0000026B  61			popad
- 0000026C  C3			ret 
- 0000026D			encrypt endp
+ 00000590		     1		.code
+ 00000590  52		     1		push	edx
+ 00000591  BA 00008CC8 R     1		mov	edx,OFFSET ??000D
+ 00000596  E8 00000000 E     1		call	WriteString
+ 0000059B  5A		     1		pop	edx
+ 0000059C  BA 00000000 R	mov edx,OFFSET buffer                ; display the buffer
+ 000005A1  E8 00000000 E	call WriteString
+ 000005A6  E8 00000000 E	call Crlf
+ 000005AB			done:
+ 000005AB  61			popad
+ 000005AC  C3			ret 
+ 000005AD			encrypt endp
 				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 				;;proc to create file(createoutputfile) instruction
 				;;write into file from buffer after encrypt data with( writetofile)
 				;;then use(closefile)
 				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
- 0000026D			createfile_ proc
+ 000005AD			createfile_ proc
 				;create new file
- 0000026D  60			pushad
- 0000026E  BA 00004E3D R	mov edx, offset filenamee
- 00000273  E8 00000000 E	call createoutputfile
- 00000278  A3 00004E6C R	mov fileHandle ,eax
+ 000005AD  60			pushad
+ 000005AE  BA 000061C6 R	mov edx, offset filenamee
+ 000005B3  E8 00000000 E	call createoutputfile
+ 000005B8  A3 000061F5 R	mov fileHandle ,eax
 				; Check for errors.
- 0000027D  83 F8 FF		cmp eax, INVALID_HANDLE_VALUE      ; error found?
- 00000280  75 11		jne file_ok                        ; no: skip
- 00000282  BA 00004E80 R	mov edx,OFFSET str1                ; display error
- 00000287  E8 FFFFFF9A		call DisplayMessage
+ 000005BD  83 F8 FF		cmp eax, INVALID_HANDLE_VALUE      ; error found?
+ 000005C0  75 11		jne file_ok                        ; no: skip
+ 000005C2  BA 00006209 R	mov edx,OFFSET str1                ; display error
+ 000005C7  E8 FFFFFF9A		call DisplayMessage
 				exit
- 0000028C  6A 00	   *	    push   +000000000h
- 0000028E  E8 00000000 E   *	    call   ExitProcess
- 00000293			file_ok:
+ 000005CC  6A 00	   *	    push   +000000000h
+ 000005CE  E8 00000000 E   *	    call   ExitProcess
+ 000005D3			file_ok:
 				    
- 00000293  A1 00004E6C R	    mov eax,fileHandle
- 00000298  BA 00000000 R		mov edx,OFFSET buffer
- 0000029D  8B 0D 00004E74 R		mov ecx , stringLen
- 000002A3  E8 00000000 E		call WriteToFile
- 000002A8  E8 00000000 E		call CloseFile
+ 000005D3  A1 000061F5 R	    mov eax,fileHandle
+ 000005D8  BA 00000000 R		mov edx,OFFSET buffer
+ 000005DD  8B 0D 000061FD R		mov ecx , stringLen
+ 000005E3  E8 00000000 E		call WriteToFile
+ 000005E8  E8 00000000 E		call CloseFile
 
- 000002AD  61			popad
+ 000005ED  61			popad
 				;exit
- 000002AE  C3			ret
- 000002AF			createfile_ endp
+ 000005EE  C3			ret
+ 000005EF			createfile_ endp
 				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 				;;enroll student and button save
 				;;
 				;;
 				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
- 000002AF			enrollstd proc
- 000002AF  BA 00000000 R	mov edx,offset buffer
- 000002B4			looop:
- 000002B4  C6 02 23		mov byte ptr[edx],'#'
- 000002B7  42			inc edx
- 000002B8  52			push edx
- 000002B9  BA 00004FEF R	mov edx,offset enroll
- 000002BE  E8 00000000 E	call writestring
- 000002C3  5A			pop edx
- 000002C4  B9 00001389		mov ecx ,BUFFER_SIZE
- 000002C9  E8 00000000 E	call readstring
- 000002CE  01 05 00004E78 R	add countbyte,eax
- 000002D4  52			push edx 
- 000002D5  BA 00004FC8 R	mov edx,offset sav
- 000002DA  E8 00000000 E	call writestring
- 000002DF  5A			pop edx
- 000002E0  E8 00000000 E	call readdec
- 000002E5  83 F8 01		cmp eax,1
- 000002E8  74 02		je savee
- 000002EA  EB C8		jmp looop
- 000002EC			savee:
- 000002EC  8B 1D 00004E78 R	mov ebx,countbyte
- 000002F2  89 1D 00004E74 R	mov stringLen,ebx
- 000002F8  E8 FFFFFF36		call encrypt
- 000002FD  E8 00000001		call createfileonly
+ 000005EF			enrollstd proc 
 
- 00000302  C3			ret
- 00000303			enrollstd endp
+ 000005EF			looop:
+ 000005EF  C6 02 23		mov byte ptr[edx],'#'
+ 000005F2  42			inc edx
+ 000005F3  52			push edx
+ 000005F4  BA 00006378 R	mov edx,offset enroll
+ 000005F9  E8 00000000 E	call writestring
+ 000005FE  5A			pop edx
+ 000005FF  B9 00001389		mov ecx ,BUFFER_SIZE
+ 00000604  E8 00000000 E	call readstring
+ 00000609  01 05 00006201 R	add countbyte,eax
+ 0000060F  52			push edx 
+ 00000610  BA 00006351 R	mov edx,offset sav
+ 00000615  E8 00000000 E	call writestring
+ 0000061A  5A			pop edx
+ 0000061B  03 D0		add edx,eax
+ 0000061D  E8 00000000 E	call readdec
+ 00000622  83 F8 01		cmp eax,1
+ 00000625  74 02		je savee
+ 00000627  EB C6		jmp looop
+ 00000629			savee:
+ 00000629  8B 1D 00006201 R	mov ebx,countbyte
+ 0000062F  43			inc ebx
+ 00000630  89 1D 000061FD R	mov stringLen,ebx
+ 00000636  B3 23		mov bl,'#'
+ 00000638  42			inc edx
+ 00000639  88 1A		mov byte ptr[edx],bl
+ 0000063B  FF 05 000061FD R	inc stringLen
+
+ 00000641  C3			ret
+ 00000642			enrollstd endp
 
 
 
@@ -633,12 +1080,12 @@ Min_database.asm(149) : warning A6004:procedure argument or local not referenced
 				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
- 00000303			createfileonly proc
+ 00000642			createfileonly proc
 				;create new file
- 00000303  60			pushad
+ 00000642  60			pushad
 				mwrite "Enter the new file name with .txt : "
- 000078BA		     1		.data		
- 000078BA 45 6E 74 65 72     1		??0007 BYTE "Enter the new file name with .txt : ",0	
+ 00008CD4		     1		.data		
+ 00008CD4 45 6E 74 65 72     1		??000E BYTE "Enter the new file name with .txt : ",0	
 	   20 74 68 65 20
 	   6E 65 77 20 66
 	   69 6C 65 20 6E
@@ -646,155 +1093,157 @@ Min_database.asm(149) : warning A6004:procedure argument or local not referenced
 	   69 74 68 20 2E
 	   74 78 74 20 3A
 	   20 00
- 00000304		     1		.code
- 00000304  52		     1		push	edx
- 00000305  BA 000078BA R     1		mov	edx,OFFSET ??0007
- 0000030A  E8 00000000 E     1		call	WriteString
- 0000030F  5A		     1		pop	edx
- 00000310  BA 00004E3D R	mov edx,offset filenamee
- 00000315  B9 00000014		mov ecx,lengthof filenamee
- 0000031A  E8 00000000 E	call readstring
+ 00000643		     1		.code
+ 00000643  52		     1		push	edx
+ 00000644  BA 00008CD4 R     1		mov	edx,OFFSET ??000E
+ 00000649  E8 00000000 E     1		call	WriteString
+ 0000064E  5A		     1		pop	edx
+ 0000064F  BA 000061C6 R	mov edx,offset filenamee
+ 00000654  B9 00000014		mov ecx,lengthof filenamee
+ 00000659  E8 00000000 E	call readstring
 				mwrite "Enter the new file key 0-255: "
- 000078DF		     1		.data		
- 000078DF 45 6E 74 65 72     1		??0008 BYTE "Enter the new file key 0-255: ",0	
+ 00008CF9		     1		.data		
+ 00008CF9 45 6E 74 65 72     1		??000F BYTE "Enter the new file key 0-255: ",0	
 	   20 74 68 65 20
 	   6E 65 77 20 66
 	   69 6C 65 20 6B
 	   65 79 20 30 2D
 	   32 35 35 3A 20
 	   00
- 0000031F		     1		.code
- 0000031F  52		     1		push	edx
- 00000320  BA 000078DF R     1		mov	edx,OFFSET ??0008
- 00000325  E8 00000000 E     1		call	WriteString
- 0000032A  5A		     1		pop	edx
- 0000032B  BA 00004E65 R	mov edx,offset newkey
- 00000330  E8 00000000 E	call readstring
- 00000335  A3 00004E68 R	mov keylength,eax
- 0000033A  E8 00000130		call addkey
- 0000033F  BA 00004E3D R	mov edx, offset filenamee
- 00000344  E8 00000000 E	call createoutputfile
- 00000349  A3 00004E6C R	mov fileHandle ,eax
+ 0000065E		     1		.code
+ 0000065E  52		     1		push	edx
+ 0000065F  BA 00008CF9 R     1		mov	edx,OFFSET ??000F
+ 00000664  E8 00000000 E     1		call	WriteString
+ 00000669  5A		     1		pop	edx
+ 0000066A  BA 000061EE R	mov edx,offset newkey
+ 0000066F  E8 00000000 E	call readstring
+ 00000674  A3 000061F1 R	mov keylength,eax
+ 00000679  E8 0000013A		call addkey
+ 0000067E  E8 FFFFFEF0		call encrypt
+ 00000683  BA 000061C6 R	mov edx, offset filenamee
+ 00000688  E8 00000000 E	call createoutputfile
+ 0000068D  A3 000061F5 R	mov fileHandle ,eax
 				; Check for errors.
- 0000034E  83 F8 FF		cmp eax, INVALID_HANDLE_VALUE      ; error found?
- 00000351  75 11		jne file_ok                        ; no: skip
- 00000353  BA 00004E80 R	mov edx,OFFSET str1                ; display error
- 00000358  E8 FFFFFEC9		call DisplayMessage
+ 00000692  83 F8 FF		cmp eax, INVALID_HANDLE_VALUE      ; error found?
+ 00000695  75 11		jne file_ok                        ; no: skip
+ 00000697  BA 00006209 R	mov edx,OFFSET str1                ; display error
+ 0000069C  E8 FFFFFEC5		call DisplayMessage
 				exit
- 0000035D  6A 00	   *	    push   +000000000h
- 0000035F  E8 00000000 E   *	    call   ExitProcess
- 00000364			file_ok:
+ 000006A1  6A 00	   *	    push   +000000000h
+ 000006A3  E8 00000000 E   *	    call   ExitProcess
+ 000006A8			file_ok:
 				 
- 00000364  A1 00004E6C R	    mov eax,fileHandle
- 00000369  BA 00000000 R		mov edx,OFFSET buffer
- 0000036E  8B 0D 00004E74 R		mov ecx , stringLen
- 00000374  E8 00000000 E		call WriteToFile
- 00000379  E8 00000000 E		call CloseFile
- 0000037E  61			popad
+ 000006A8  A1 000061F5 R	    mov eax,fileHandle
+ 000006AD  BA 00000000 R		mov edx,OFFSET buffer
+ 000006B2  8B 0D 000061FD R		mov ecx , stringLen
+ 000006B8  E8 00000000 E		call WriteToFile
+ 000006BD  E8 00000000 E		call CloseFile
+ 000006C2  61			popad
 				;exit
- 0000037F  C3			ret
- 00000380			createfileonly endp
+ 000006C3  C3			ret
+ 000006C4			createfileonly endp
 				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
- 00000380			inputfromuser proc
- 00000380  BA 00004FEF R	mov edx ,offset enroll
- 00000385  E8 00000000 E	call writestring
- 0000038A  B9 00001389		mov ecx,BUFFER_SIZE
- 0000038F  BA 00001393 R	mov edx,offset arr
- 00000394  E8 00000000 E	call readstring
- 00000399  A3 00004E70 R	mov stringLength ,eax
- 0000039E  C3			ret
- 0000039F			inputfromuser endp
+ 000006C4			inputfromuser proc
+ 000006C4  BA 00006378 R	mov edx ,offset enroll
+ 000006C9  E8 00000000 E	call writestring
+ 000006CE  B9 00001389		mov ecx,BUFFER_SIZE
+ 000006D3  BA 00001393 R	mov edx,offset arr
+ 000006D8  E8 00000000 E	call readstring
+ 000006DD  A3 000061F9 R	mov stringLength ,eax
+ 000006E2  C3			ret
+ 000006E3			inputfromuser endp
 				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
- 0000039F			ofile proc
- 0000039F			loo:
+ 000006E3			ofile proc
+ 000006E3			loo:
 				mwrite "Enter the file name with .txt:"
- 000078FE		     1		.data		
- 000078FE 45 6E 74 65 72     1		??0009 BYTE "Enter the file name with .txt:",0	
+ 00008D18		     1		.data		
+ 00008D18 45 6E 74 65 72     1		??0010 BYTE "Enter the file name with .txt:",0	
 	   20 74 68 65 20
 	   66 69 6C 65 20
 	   6E 61 6D 65 20
 	   77 69 74 68 20
 	   2E 74 78 74 3A
 	   00
- 0000039F		     1		.code
- 0000039F  52		     1		push	edx
- 000003A0  BA 000078FE R     1		mov	edx,OFFSET ??0009
- 000003A5  E8 00000000 E     1		call	WriteString
- 000003AA  5A		     1		pop	edx
- 000003AB  B9 00000014		mov ecx,lengthof filenamee
- 000003B0  BA 00004E3D R	mov edx,offset filenamee
- 000003B5  E8 00000000 E	call readstring
+ 000006E3		     1		.code
+ 000006E3  52		     1		push	edx
+ 000006E4  BA 00008D18 R     1		mov	edx,OFFSET ??0010
+ 000006E9  E8 00000000 E     1		call	WriteString
+ 000006EE  5A		     1		pop	edx
+ 000006EF  B9 00000014		mov ecx,lengthof filenamee
+ 000006F4  BA 000061C6 R	mov edx,offset filenamee
+ 000006F9  E8 00000000 E	call readstring
 				mwrite "Enter the DBkey: "
- 0000791D		     1		.data		
- 0000791D 45 6E 74 65 72     1		??000A BYTE "Enter the DBkey: ",0	
+ 00008D37		     1		.data		
+ 00008D37 45 6E 74 65 72     1		??0011 BYTE "Enter the DBkey: ",0	
 	   20 74 68 65 20
 	   44 42 6B 65 79
 	   3A 20 00
- 000003BA		     1		.code
- 000003BA  52		     1		push	edx
- 000003BB  BA 0000791D R     1		mov	edx,OFFSET ??000A
- 000003C0  E8 00000000 E     1		call	WriteString
- 000003C5  5A		     1		pop	edx
- 000003C6  B9 00000003		mov ecx,lengthof newkey
- 000003CB  41			inc ecx
- 000003CC  BA 00004E65 R	mov edx,offset newkey
- 000003D1  E8 00000000 E	call readstring
- 000003D6  C6 80 00004E65 R	mov newkey[eax],0
+ 000006FE		     1		.code
+ 000006FE  52		     1		push	edx
+ 000006FF  BA 00008D37 R     1		mov	edx,OFFSET ??0011
+ 00000704  E8 00000000 E     1		call	WriteString
+ 00000709  5A		     1		pop	edx
+ 0000070A  B9 00000003		mov ecx,lengthof newkey
+ 0000070F  41			inc ecx
+ 00000710  BA 000061EE R	mov edx,offset newkey
+ 00000715  E8 00000000 E	call readstring
+ 0000071A  C6 80 000061EE R	mov newkey[eax],0
 	   00
 
- 000003DD  BA 00004E3D R	mov edx,OFFSET filenamee
- 000003E2  E8 00000000 E	call OpenInputFile
- 000003E7  A3 00004E6C R	mov fileHandle,eax
+ 00000721  BA 000061C6 R	mov edx,OFFSET filenamee
+ 00000726  E8 00000000 E	call OpenInputFile
+ 0000072B  A3 000061F5 R	mov fileHandle,eax
 
- 000003EC  83 F8 FF		cmp eax,INVALID_HANDLE_VALUE      ; error opening file?
- 000003EF  75 13		jne file_ok                       ; no: skip
+ 00000730  83 F8 FF		cmp eax,INVALID_HANDLE_VALUE      ; error opening file?
+ 00000733  75 13		jne file_ok                       ; no: skip
 				mWrite <"Cannot open file",0dh,0ah>
- 0000792F		     1		.data		
- 0000792F 43 61 6E 6E 6F     1		??000B BYTE "Cannot open file",0dh,0ah,0	
+ 00008D49		     1		.data		
+ 00008D49 43 61 6E 6E 6F     1		??0012 BYTE "Cannot open file",0dh,0ah,0	
 	   74 20 6F 70 65
 	   6E 20 66 69 6C
 	   65 0D 0A 00
- 000003F1		     1		.code
- 000003F1  52		     1		push	edx
- 000003F2  BA 0000792F R     1		mov	edx,OFFSET ??000B
- 000003F7  E8 00000000 E     1		call	WriteString
- 000003FC  5A		     1		pop	edx
-				exit                         ; and quit
- 000003FD  6A 00	   *	    push   +000000000h
- 000003FF  E8 00000000 E   *	    call   ExitProcess
- 00000404			file_ok:
+ 00000735		     1		.code
+ 00000735  52		     1		push	edx
+ 00000736  BA 00008D49 R     1		mov	edx,OFFSET ??0012
+ 0000073B  E8 00000000 E     1		call	WriteString
+ 00000740  5A		     1		pop	edx
+				exit                              ; and quit
+ 00000741  6A 00	   *	    push   +000000000h
+ 00000743  E8 00000000 E   *	    call   ExitProcess
+ 00000748			file_ok:
 				; Read the file into a buffer.
- 00000404  BA 00000000 R	mov edx,OFFSET buffer
- 00000409  B9 00001389		mov ecx,BUFFER_SIZE
- 0000040E  E8 00000000 E	call ReadFromFile
- 00000413  A3 00004E74 R	mov stringLen,eax 
+ 00000748  BA 00000000 R	mov edx,OFFSET buffer
+ 0000074D  B9 00001389		mov ecx,BUFFER_SIZE
+ 00000752  E8 00000000 E	call ReadFromFile
+ 00000757  A3 000061FD R	mov stringLen,eax 
 				mWrite "File size: "
- 00007942		     1		.data		
- 00007942 46 69 6C 65 20     1		??000C BYTE "File size: ",0	
+ 00008D5C		     1		.data		
+ 00008D5C 46 69 6C 65 20     1		??0013 BYTE "File size: ",0	
 	   73 69 7A 65 3A
 	   20 00
- 00000418		     1		.code
- 00000418  52		     1		push	edx
- 00000419  BA 00007942 R     1		mov	edx,OFFSET ??000C
- 0000041E  E8 00000000 E     1		call	WriteString
- 00000423  5A		     1		pop	edx
- 00000424  E8 00000000 E	call WriteDec                        ; display file size
- 00000429  E8 00000000 E	call Crlf              
- 0000042E  BA 00000000 R	mov edx,OFFSET buffer
- 00000433  BB 00004E65 R	mov ebx,offset newkey
- 00000438  B9 00000003		mov ecx,3
- 0000043D			l1:
- 0000043D  8A 02		mov al,[edx]
- 0000043F  3A 03		cmp al,[ebx]
- 00000441  75 06		jne err
- 00000443  42			inc edx
- 00000444  43			inc ebx
- 00000445  E2 F6		loop l1
- 00000447  EB 1B		jmp donee
- 00000449			err:
+ 0000075C		     1		.code
+ 0000075C  52		     1		push	edx
+ 0000075D  BA 00008D5C R     1		mov	edx,OFFSET ??0013
+ 00000762  E8 00000000 E     1		call	WriteString
+ 00000767  5A		     1		pop	edx
+ 00000768  E8 00000000 E	call WriteDec                        ; display file size
+ 0000076D  E8 00000000 E	call Crlf 
+ 00000772  E8 FFFFFDFC		call encrypt             
+ 00000777  BA 00000000 R	mov edx,OFFSET buffer
+ 0000077C  BB 000061EE R	mov ebx,offset newkey
+ 00000781  B9 00000003		mov ecx,lengthof newkey
+ 00000786			l1:
+ 00000786  8A 02		mov al,[edx]
+ 00000788  3A 03		cmp al,[ebx]
+ 0000078A  75 06		jne err
+ 0000078C  42			inc edx
+ 0000078D  43			inc ebx
+ 0000078E  E2 F6		loop l1
+ 00000790  EB 1B		jmp donee
+ 00000792			err:
 				mwrite "Database Error Key Not Found!! try again"
- 0000794E		     1		.data		
- 0000794E 44 61 74 61 62     1		??000D BYTE "Database Error Key Not Found!! try again",0	
+ 00008D68		     1		.data		
+ 00008D68 44 61 74 61 62     1		??0014 BYTE "Database Error Key Not Found!! try again",0	
 	   61 73 65 20 45
 	   72 72 6F 72 20
 	   4B 65 79 20 4E
@@ -803,87 +1252,87 @@ Min_database.asm(149) : warning A6004:procedure argument or local not referenced
 	   20 74 72 79 20
 	   61 67 61 69 6E
 	   00
- 00000449		     1		.code
- 00000449  52		     1		push	edx
- 0000044A  BA 0000794E R     1		mov	edx,OFFSET ??000D
- 0000044F  E8 00000000 E     1		call	WriteString
- 00000454  5A		     1		pop	edx
- 00000455  A1 00004E6C R	mov eax,fileHandle
- 0000045A  E8 00000000 E	call CloseFile
- 0000045F  E9 FFFFFF3B		jmp loo
- 00000464			donee:
- 00000464  A1 00004E6C R	mov eax,fileHandle
- 00000469  E8 00000000 E	call CloseFile
+ 00000792		     1		.code
+ 00000792  52		     1		push	edx
+ 00000793  BA 00008D68 R     1		mov	edx,OFFSET ??0014
+ 00000798  E8 00000000 E     1		call	WriteString
+ 0000079D  5A		     1		pop	edx
+ 0000079E  A1 000061F5 R	mov eax,fileHandle
+ 000007A3  E8 00000000 E	call CloseFile
+ 000007A8  E9 FFFFFF36		jmp loo
+ 000007AD			donee:
+ 000007AD  A1 000061F5 R	mov eax,fileHandle
+ 000007B2  E8 00000000 E	call CloseFile
 
- 0000046E  C3			ret
- 0000046F			ofile endp
+ 000007B7  C3			ret
+ 000007B8			ofile endp
 				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 				;;write the key in file
- 0000046F			addkey proc
- 0000046F  B8 00000003		mov eax,3
- 00000474  03 05 00004E74 R	add eax,stringLen
- 0000047A  BE 00000000 R	mov esi,offset buffer
- 0000047F  03 35 00004E74 R	add esi,stringLen
- 00000485  BF 00000000 R	mov edi,offset buffer
- 0000048A  03 F8		add edi,eax
- 0000048C  8B 0D 00004E74 R	mov ecx,stringLen
- 00000492  A3 00004E74 R	mov stringLen,eax
- 00000497  BB 00000000		mov ebx,0
- 0000049C			l1:
- 0000049C  8A 1E		mov bl,[esi]
- 0000049E  88 1F		mov [edi],bl
- 000004A0  4F			dec edi
- 000004A1  4E			dec esi
- 000004A2  E2 F8		loop l1
- 000004A4  BB 00000000		mov ebx,0
- 000004A9  BF 00000000 R	mov edi,offset buffer
- 000004AE  BA 00004E65 R	mov edx,offset newkey
- 000004B3  B9 00000003		mov ecx,lengthof newkey
- 000004B8			l2:
- 000004B8  8A 1A		mov bl,[edx]
- 000004BA  88 1F		mov [edi],bl
- 000004BC  42			inc edx
- 000004BD  47			inc edi
- 000004BE  E2 F8		loop l2
+ 000007B8			addkey proc
+ 000007B8  B8 00000003		mov eax,3
+ 000007BD  03 05 000061FD R	add eax,stringLen
+ 000007C3  BE 00000000 R	mov esi,offset buffer
+ 000007C8  03 35 000061FD R	add esi,stringLen
+ 000007CE  BF 00000000 R	mov edi,offset buffer
+ 000007D3  03 F8		add edi,eax
+ 000007D5  8B 0D 000061FD R	mov ecx,stringLen
+ 000007DB  A3 000061FD R	mov stringLen,eax
+ 000007E0  BB 00000000		mov ebx,0
+ 000007E5			l1:
+ 000007E5  8A 1E		mov bl,[esi]
+ 000007E7  88 1F		mov [edi],bl
+ 000007E9  4F			dec edi
+ 000007EA  4E			dec esi
+ 000007EB  E2 F8		loop l1
+ 000007ED  BB 00000000		mov ebx,0
+ 000007F2  BF 00000000 R	mov edi,offset buffer
+ 000007F7  BA 000061EE R	mov edx,offset newkey
+ 000007FC  B9 00000003		mov ecx,lengthof newkey
+ 00000801			l2:
+ 00000801  8A 1A		mov bl,[edx]
+ 00000803  88 1F		mov [edi],bl
+ 00000805  42			inc edx
+ 00000806  47			inc edi
+ 00000807  E2 F8		loop l2
 
 
 
- 000004C0  C3			ret
- 000004C1			addkey endp
+ 00000809  C3			ret
+ 0000080A			addkey endp
 				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
- 000004C1			 report proc
- 000004C1			X:
+ 0000080A			 report proc
+ 0000080A			X:
 				mwrite "Please Enter File Name : "
- 00007977		     1		.data		
- 00007977 50 6C 65 61 73     1		??000E BYTE "Please Enter File Name : ",0	
+ 00008D91		     1		.data		
+ 00008D91 50 6C 65 61 73     1		??0015 BYTE "Please Enter File Name : ",0	
 	   65 20 45 6E 74
 	   65 72 20 46 69
 	   6C 65 20 4E 61
 	   6D 65 20 3A 20
 	   00
- 000004C1		     1		.code
- 000004C1  52		     1		push	edx
- 000004C2  BA 00007977 R     1		mov	edx,OFFSET ??000E
- 000004C7  E8 00000000 E     1		call	WriteString
- 000004CC  5A		     1		pop	edx
- 000004CD  BA 00004E3D R	mov edx,offset filenamee
- 000004D2  B9 00000014		mov ecx,lengthof filenamee
- 000004D7  E8 00000000 E	call readstring
+ 0000080A		     1		.code
+ 0000080A  52		     1		push	edx
+ 0000080B  BA 00008D91 R     1		mov	edx,OFFSET ??0015
+ 00000810  E8 00000000 E     1		call	WriteString
+ 00000815  5A		     1		pop	edx
+ 00000816  BA 000061C6 R	mov edx,offset filenamee
+ 0000081B  B9 00000014		mov ecx,lengthof filenamee
+ 00000820  E8 00000000 E	call readstring
 				;open file 
- 000004DC  BA 00004E3D R	mov edx,OFFSET filenamee
- 000004E1  E8 00000000 E	call OpenInputFile
- 000004E6  A3 00004E6C R	mov fileHandle,eax
+ 00000825  BA 000061C6 R	mov edx,OFFSET filenamee
+ 0000082A  E8 00000000 E	call OpenInputFile
+ 0000082F  A3 000061F5 R	mov fileHandle,eax
 
 				;load file data
- 000004EB  BA 00000000 R	mov edx,OFFSET buffer
- 000004F0  B9 00001389		mov ecx,BUFFER_SIZE
- 000004F5  E8 00000000 E	call ReadFromFile
- 000004FA  A3 00004E74 R	mov stringLen,eax
+ 00000834  BA 00000000 R	mov edx,OFFSET buffer
+ 00000839  B9 00001389		mov ecx,BUFFER_SIZE
+ 0000083E  E8 00000000 E	call ReadFromFile
+ 00000843  A3 000061FD R	mov stringLen,eax
 				;call encrypt
 
 				mwrite "full report sorted by ID(1)/Grade(2): "
- 00007991		     1		.data		
- 00007991 66 75 6C 6C 20     1		??000F BYTE "full report sorted by ID(1)/Grade(2): ",0	
+ 00008DAB		     1		.data		
+ 00008DAB 66 75 6C 6C 20     1		??0016 BYTE "full report sorted by ID(1)/Grade(2): ",0	
 	   72 65 70 6F 72
 	   74 20 73 6F 72
 	   74 65 64 20 62
@@ -891,253 +1340,192 @@ Min_database.asm(149) : warning A6004:procedure argument or local not referenced
 	   31 29 2F 47 72
 	   61 64 65 28 32
 	   29 3A 20 00
- 000004FF		     1		.code
- 000004FF  52		     1		push	edx
- 00000500  BA 00007991 R     1		mov	edx,OFFSET ??000F
- 00000505  E8 00000000 E     1		call	WriteString
- 0000050A  5A		     1		pop	edx
- 0000050B  E8 00000000 E	call readdec	
- 00000510  83 F8 01		cmp eax,1
- 00000513  74 17		je IDSORT
- 00000515  83 F8 02		cmp eax,2
- 00000518  0F 84 000000D5	je GRADESort
+ 00000848		     1		.code
+ 00000848  52		     1		push	edx
+ 00000849  BA 00008DAB R     1		mov	edx,OFFSET ??0016
+ 0000084E  E8 00000000 E     1		call	WriteString
+ 00000853  5A		     1		pop	edx
+ 00000854  E8 00000000 E	call readdec	
+ 00000859  83 F8 01		cmp eax,1
+ 0000085C  74 17		je IDSORT
+ 0000085E  83 F8 02		cmp eax,2
+ 00000861  0F 84 00000119	je GRADESort
 				mwrite "invalid option try again"
- 000079B8		     1		.data		
- 000079B8 69 6E 76 61 6C     1		??0010 BYTE "invalid option try again",0	
+ 00008DD2		     1		.data		
+ 00008DD2 69 6E 76 61 6C     1		??0017 BYTE "invalid option try again",0	
 	   69 64 20 6F 70
 	   74 69 6F 6E 20
 	   74 72 79 20 61
 	   67 61 69 6E 00
- 0000051E		     1		.code
- 0000051E  52		     1		push	edx
- 0000051F  BA 000079B8 R     1		mov	edx,OFFSET ??0010
- 00000524  E8 00000000 E     1		call	WriteString
- 00000529  5A		     1		pop	edx
- 0000052A  EB 95		jmp X
+ 00000867		     1		.code
+ 00000867  52		     1		push	edx
+ 00000868  BA 00008DD2 R     1		mov	edx,OFFSET ??0017
+ 0000086D  E8 00000000 E     1		call	WriteString
+ 00000872  5A		     1		pop	edx
+ 00000873  EB 95		jmp X
 
 
- 0000052C			IDSORT:
- 0000052C			getallid:
- 0000052C  BA 00000000 R	mov edx ,offset buffer
- 00000531  B9 00001393		mov ecx,lengthof buffer
- 00000536  BF 00001393 R	mov edi,offset arr
- 0000053B  83 C2 03		add edx,3
- 0000053E			lop:
- 0000053E  80 3A 23		cmp byte ptr[edx],'#'
- 00000541  74 02		je store_id
- 00000543  EB 1D		jmp skip
+ 00000875			IDSORT:
+ 00000875			getallid:
+ 00000875  BA 00000000 R	mov edx ,offset buffer
+ 0000087A  B9 00001393		mov ecx,lengthof buffer
+ 0000087F  BF 00001393 R	mov edi,offset arr
+ 00000884  83 C2 03		add edx,3
+ 00000887			lop:
+ 00000887  80 3A 23		cmp byte ptr[edx],'#'
+ 0000088A  74 02		je store_id
+ 0000088C  EB 1D		jmp skip
 
- 00000545			store_id:
- 00000545  42			inc edx
- 00000546  BB 00000020		mov ebx," "
- 0000054B  39 1A		cmp [edx],ebx
- 0000054D  0F 84 00000118	je quit
- 00000553  51			push ecx
- 00000554  B9 00000004		mov ecx,4
+ 0000088E			store_id:
+ 0000088E  42			inc edx
+ 0000088F  BB 00000020		mov ebx," "
+ 00000894  39 1A		cmp [edx],ebx
+ 00000896  0F 84 0000015C	je quit
+ 0000089C  51			push ecx
+ 0000089D  B9 00000004		mov ecx,4
 
- 00000559			lo:
- 00000559  8A 1A		mov bl,[edx]
- 0000055B  88 1F		mov [edi],bl
- 0000055D  47			inc edi
- 0000055E  42			inc edx
- 0000055F  E2 F8		loop lo
+ 000008A2			lo:
+ 000008A2  8A 1A		mov bl,[edx]
+ 000008A4  88 1F		mov [edi],bl
+ 000008A6  47			inc edi
+ 000008A7  42			inc edx
+ 000008A8  E2 F8		loop lo
 
- 00000561  59			pop ecx
- 00000562			skip:
- 00000562  42			inc edx
- 00000563  E2 D9		loop lop
+ 000008AA  59			pop ecx
+ 000008AB			skip:
+ 000008AB  42			inc edx
+ 000008AC  E2 D9		loop lop
 
 				invoke BubbleSort ,offset arr,lengthof arr
- 00000565  68 00001389	   *	    push   +000001389h
- 0000056A  68 00001393 R   *	    push   dword  ptr OFFSET FLAT: arr
- 0000056F  E8 FFFFFA8C	   *	    call   BubbleSort
+ 000008AE  68 00001389	   *	    push   +000001389h
+ 000008B3  68 00001393 R   *	    push   dword  ptr OFFSET FLAT: arr
+ 000008B8  E8 FFFFF99B	   *	    call   BubbleSort
 				;;; we should now call search fun to return records in sorted array 
 				;;; i will pass to it sorted array
 
- 00000574  B9 00000003		mov ecx,3
- 00000579  BE 00000000		mov esi,0
- 0000057E			llll:
- 0000057E  51			push ecx
- 0000057F  B9 00000004		mov ecx,4
- 00000584  BF 00000000		mov edi,0
- 00000589			lala:
- 00000589  8A 9E 00001393 R	mov bl,arr[esi]
- 0000058F  88 9F 0000271C R	mov arrr[edi],bl
- 00000595  46			inc esi
- 00000596  47			inc edi
- 00000597  E2 F0		loop lala
- 00000599  56			push esi
+ 000008BD  BE 00007751 R	mov esi,offset report_entery
+ 000008C2  B9 00000035		mov ecx,lengthof report_entery
+ 000008C7  BF 00004E32 R	mov edi,offset  finalbuffer
+ 000008CC  F3/ A4		rep movsb
+
+
+				;mov u1,lengthof report_entery
+				; u1,2
+
+
+ 000008CE  BE 00000000		mov esi,0
+ 000008D3			llll:
+ 000008D3  51			push ecx
+ 000008D4  B9 00000004		mov ecx,4
+ 000008D9  BF 00000000		mov edi,0
+ 000008DE			lala:
+ 000008DE  8A 9E 00001393 R	mov bl,arr[esi]
+ 000008E4  88 9F 00003AA5 R	mov arrr[edi],bl
+ 000008EA  46			inc esi
+ 000008EB  47			inc edi
+ 000008EC  E2 F0		loop lala
+ 000008EE  56			push esi
 				invoke search , offset arrr ,  offset buffer , 4 , lengthof buffer , offset u , u1 , offset finalbuffer
- 0000059A  68 00003AA9 R   *	    push   dword  ptr OFFSET FLAT: finalbuffer
- 0000059F  FF 35 00005022 R *	    push   u1
- 000005A5  68 0000501E R   *	    push   dword  ptr OFFSET FLAT: u
- 000005AA  68 00001393	   *	    push   +000001393h
- 000005AF  6A 04	   *	    push   +000000004h
- 000005B1  68 00000000 R   *	    push   dword  ptr OFFSET FLAT: buffer
- 000005B6  68 0000271C R   *	    push   dword  ptr OFFSET FLAT: arrr
- 000005BB  E8 FFFFFA75	   *	    call   search
- 000005C0  A1 0000501E R	mov eax,u
- 000005C5  A3 00005022 R	mov u1,eax
- 000005CA  5E			pop esi
- 000005CB  59			pop ecx
- 000005CC  E2 B0		loop llll
+ 000008EF  68 00004E32 R   *	    push   dword  ptr OFFSET FLAT: finalbuffer
+ 000008F4  FF 35 000063AB R *	    push   u1
+ 000008FA  68 000063A7 R   *	    push   dword  ptr OFFSET FLAT: u
+ 000008FF  68 00001393	   *	    push   +000001393h
+ 00000904  6A 04	   *	    push   +000000004h
+ 00000906  68 00000000 R   *	    push   dword  ptr OFFSET FLAT: buffer
+ 0000090B  68 00003AA5 R   *	    push   dword  ptr OFFSET FLAT: arrr
+ 00000910  E8 FFFFF978	   *	    call   search
 
- 000005CE  BA 00004E51 R	mov edx, offset filename
- 000005D3  E8 00000000 E	call createoutputfile
- 000005D8  A3 00004E6C R	mov fileHandle ,eax
+ 00000915  8B 1D 000063AB R	mov ebx , u1
+ 0000091B  83 EB 02		sub ebx,2
+ 0000091E  C6 83 00004E32 R	mov finalbuffer[ebx], 0dh
+	   0D
+ 00000925  43			inc ebx
+ 00000926  C6 83 00004E32 R	mov finalbuffer[ebx], 0ah
+	   0A
+
+ 0000092D  BA 00004E32 R	mov edx,offset finalbuffer
+ 00000932  83 05 000063A7 R	add u,2
+	   02
+ 00000939  A1 000063A7 R	mov eax,u
+ 0000093E  A3 000063AB R	mov u1,eax
+ 00000943  5E			pop esi
+ 00000944  59			pop ecx
+
+ 00000945  80 BE 00001393 R	cmp arr[esi],'0'
+	   30
+ 0000094C  72 0D		jb cdnee
+ 0000094E  80 BE 00001393 R	cmp arr[esi],'9'
+	   39
+
+ 00000955  0F 82 FFFFFF78	jb llll
+
+ 0000095B			cdnee:
+ 0000095B  BA 000061DA R	mov edx, offset filename
+ 00000960  E8 00000000 E	call createoutputfile
+ 00000965  A3 000061F5 R	mov fileHandle ,eax
 				; Check for errors.
- 000005DD  83 F8 FF		cmp eax, INVALID_HANDLE_VALUE      ; error found?
- 000005E0  75 70		jne file_ok                        ; no: skip
- 000005E2  BA 00004E80 R	mov edx,OFFSET str1                ; display error
- 000005E7  E8 FFFFFC3A		call DisplayMessage
+ 0000096A  83 F8 FF		cmp eax, INVALID_HANDLE_VALUE      ; error found?
+ 0000096D  75 70		jne file_ok                        ; no: skip
+ 0000096F  BA 00006209 R	mov edx,OFFSET str1                ; display error
+ 00000974  E8 FFFFFBED		call DisplayMessage
 				exit
- 000005EC  6A 00	   *	    push   +000000000h
- 000005EE  E8 00000000 E   *	    call   ExitProcess
+ 00000979  6A 00	   *	    push   +000000000h
+ 0000097B  E8 00000000 E   *	    call   ExitProcess
 				;;;;;;;;;;;;;;;;;;;;;;;;;;
- 000005F3			GRADESort:
- 000005F3  BA 00000000 R	mov edx ,offset buffer
- 000005F8  B9 00001393		mov ecx,lengthof buffer
- 000005FD  BF 00001393 R	mov edi,offset arr
- 00000602			LOOL:
- 00000602  80 3A 2C		cmp byte ptr [edx],','
- 00000605  74 03		je cnt
- 00000607  42			inc edx
- 00000608  EB 28		jmp donne
+ 00000980			GRADESort:
+ 00000980  BA 00000000 R	mov edx ,offset buffer
+ 00000985  B9 00001393		mov ecx,lengthof buffer
+ 0000098A  BF 00001393 R	mov edi,offset arr
+ 0000098F			LOOL:
+ 0000098F  80 3A 2C		cmp byte ptr [edx],','
+ 00000992  74 03		je cnt
+ 00000994  42			inc edx
+ 00000995  EB 28		jmp donne
 
- 0000060A			cnt:
- 0000060A  B8 00000000		mov eax,0
- 0000060F  FE 05 0000778C R	inc counter
- 00000615  A0 0000778C R	mov al,counter
- 0000061A  F6 35 0000778D R	div divident
- 00000620  80 FC 00		cmp ah,0
- 00000623  74 02		je donelool
- 00000625  EB 0B		jmp donne
+ 00000997			cnt:
+ 00000997  B8 00000000		mov eax,0
+ 0000099C  FE 05 00008B15 R	inc counter
+ 000009A2  A0 00008B15 R	mov al,counter
+ 000009A7  F6 35 00008B16 R	div divident
+ 000009AD  80 FC 00		cmp ah,0
+ 000009B0  74 02		je donelool
+ 000009B2  EB 0B		jmp donne
 
- 00000627			donelool:
- 00000627  BB 00000000		mov ebx ,0
- 0000062C  42			inc edx
- 0000062D  8A 1A		mov bl,[edx]
- 0000062F  88 1F		mov [edi],bl
- 00000631  47			inc edi
- 00000632			donne:
- 00000632  E2 CE		loop LOOL
+ 000009B4			donelool:
+ 000009B4  BB 00000000		mov ebx ,0
+ 000009B9  42			inc edx
+ 000009BA  8A 1A		mov bl,[edx]
+ 000009BC  88 1F		mov [edi],bl
+ 000009BE  47			inc edi
+ 000009BF			donne:
+ 000009BF  E2 CE		loop LOOL
 				invoke BubbleSort ,offset arr,lengthof arr
- 00000634  68 00001389	   *	    push   +000001389h
- 00000639  68 00001393 R   *	    push   dword  ptr OFFSET FLAT: arr
- 0000063E  E8 FFFFF9BD	   *	    call   BubbleSort
+ 000009C1  68 00001389	   *	    push   +000001389h
+ 000009C6  68 00001393 R   *	    push   dword  ptr OFFSET FLAT: arr
+ 000009CB  E8 FFFFF888	   *	    call   BubbleSort
 				;;;;;test;;;;;
- 00000643  BA 00001393 R	mov edx,offset arr
- 00000648  B9 00001389		mov ecx,lengthof arr
- 0000064D  E8 00000000 E	call writestring
+ 000009D0  BA 00001393 R	mov edx,offset arr
+ 000009D5  B9 00001389		mov ecx,lengthof arr
+ 000009DA  E8 00000000 E	call writestring
 
 
 				;;;;;;;;;;;;;;;;;;;;;;;;;;
- 00000652			file_ok:
+ 000009DF			file_ok:
 				 
- 00000652  A1 00004E6C R	    mov eax,fileHandle
-					;mov edx,offset report_entery
-					;mov ecx,lengthof report_entery
-					;call WriteToFile
- 00000657  BA 00003AA9 R		mov edx,OFFSET finalbuffer
- 0000065C  B9 00001393			mov ecx , lengthof   finalbuffer
- 00000661  E8 00000000 E		call WriteToFile
- 00000666  E8 00000000 E		call CloseFile
- 0000066B			quit:
- 0000066B  C3			ret
- 0000066C			report endp
+ 000009DF  A1 000061F5 R	    mov eax,fileHandle
+ 000009E4  BA 00004E32 R		mov edx,OFFSET finalbuffer
+ 000009E9  B9 00001393			mov ecx , lengthof   finalbuffer
+ 000009EE  E8 00000000 E		call WriteToFile
+ 000009F3  E8 00000000 E		call CloseFile
+ 000009F8			quit:
+ 000009F8  C3			ret
+ 000009F9			report endp
 				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-				;;delete
-				;;
-				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
- 0000066C			delete proc  id :ptr byte, buf :ptr byte, idl :dword, bul :dword, serRBuf :ptr byte
- 0000066C  55		   *	    push   ebp
- 0000066D  8B EC	   *	    mov    ebp, esp
- 0000066F  8B 75 08		mov esi,id
 
- 00000672  8B 7D 0C		mov edi,buf
- 00000675  57			push edi
- 00000676  83 C7 01		add edi,1
- 00000679  89 3D 000063B0 R	mov myind,edi
-
- 0000067F			ag:
- 0000067F  8B 45 10		mov eax,idl
- 00000682  03 F8		add edi,eax
-
- 00000684  80 3F 2C		cmp byte ptr[edi],','
- 00000687  75 18		jne NR1
- 00000689  2B F8		sub edi,eax
- 0000068B  8B 4D 10		mov ecx, idl
- 0000068E			s1:
-
- 0000068E  80 3F 2C		cmp byte ptr[edi],','
- 00000691  74 0E		je NR1
- 00000693  8A 16		mov dl,[esi]
- 00000695  8A 1F		mov bl,[edi]
- 00000697  47			inc edi
- 00000698  46			inc esi
- 00000699  3A D3		cmp dl,bl
- 0000069B  75 04		jne NR1
-				 
- 0000069D  E2 EF		loop s1
- 0000069F  EB 19		jmp dne
-
- 000006A1			NR1:
- 000006A1  47			inc edi
- 000006A2  80 3F 23		cmp byte ptr[edi],'#'
- 000006A5  75 FA		jne NR1
- 000006A7  47			inc edi
- 000006A8  89 3D 000063B0 R	mov myind,edi
- 000006AE  B9 00000004		mov ecx,4
- 000006B3  3B 7D 14		cmp edi, bul
- 000006B6  74 26		je wr
- 000006B8  EB C5		jmp ag
-
- 000006BA			dne:
- 000006BA  5F			pop edi
- 000006BB  8B 75 18		mov esi,serrbuf
- 000006BE  8B CF		mov ecx,edi
- 000006C0  03 4D 14		add ecx,bul
- 000006C3			l1:
- 000006C3  8A 1F		mov bl,[edi]
- 000006C5  88 1E		mov [esi],bl
- 000006C7  47			inc edi
- 000006C8  46			inc esi
- 000006C9  3B 3D 000063B0 R	cmp edi,myind
- 000006CF  75 07		jne con
- 000006D1			DR:
- 000006D1  47			inc edi
- 000006D2  80 3F 23		cmp byte ptr[edi],'#'
- 000006D5  75 FA		jne DR
- 000006D7  47			inc edi
- 000006D8			con:
-
- 000006D8  3B F9		cmp edi,ecx
- 000006DA  75 E7		jne l1
-
- 000006DC  EB 0C		jmp re
- 000006DE			wr:
-				mWrite <"invalid id">
- 000079D1		     1		.data		
- 000079D1 69 6E 76 61 6C     1		??0011 BYTE "invalid id",0	
-	   69 64 20 69 64
-	   00
- 000006DE		     1		.code
- 000006DE  52		     1		push	edx
- 000006DF  BA 000079D1 R     1		mov	edx,OFFSET ??0011
- 000006E4  E8 00000000 E     1		call	WriteString
- 000006E9  5A		     1		pop	edx
-
- 000006EA			re:
-
-				ret
- 000006EA  C9		   *	    leave  
- 000006EB  C2 0014	   *	    ret    00014h
- 000006EE			delete endp
 
 				end main
-Microsoft (R) Macro Assembler Version 11.00.50727.1	    12/26/17 10:05:26
+Microsoft (R) Macro Assembler Version 11.00.50727.1	    12/28/17 11:48:37
 Min_database.asm					     Symbols 2 - 1
 
 
@@ -1249,21 +1637,21 @@ Segments and Groups:
 
 FLAT . . . . . . . . . . . . . .	GROUP
 STACK  . . . . . . . . . . . . .	32 Bit	 00001000 Para	  Stack	  'STACK'	 
-_DATA  . . . . . . . . . . . . .	32 Bit	 000079DC Para	  Public  'DATA'	
-_TEXT  . . . . . . . . . . . . .	32 Bit	 000006EE Para	  Public  'CODE'	
+_DATA  . . . . . . . . . . . . .	32 Bit	 00008DEB Para	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 000009F9 Para	  Public  'CODE'	
 
 
 Procedures, parameters, and locals:
 
                 N a m e                 Type     Value    Attr
 
-BubbleSort . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 00000035 Public STDCALL
+BubbleSort . . . . . . . . . . .	P Near	 00000258 _TEXT	Length= 00000035 Public STDCALL
   pArray . . . . . . . . . . . .	DWord	 bp + 00000008
   Count  . . . . . . . . . . . .	DWord	 bp + 0000000C
-  L1 . . . . . . . . . . . . . .	L Near	 0000000A _TEXT	
-  L2 . . . . . . . . . . . . . .	L Near	 0000000E _TEXT	
-  L3 . . . . . . . . . . . . . .	L Near	 00000026 _TEXT	
-  L4 . . . . . . . . . . . . . .	L Near	 0000002E _TEXT	
+  L1 . . . . . . . . . . . . . .	L Near	 00000262 _TEXT	
+  L2 . . . . . . . . . . . . . .	L Near	 00000266 _TEXT	
+  L3 . . . . . . . . . . . . . .	L Near	 0000027E _TEXT	
+  L4 . . . . . . . . . . . . . .	L Near	 00000286 _TEXT	
 CloseFile  . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 CloseHandle  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 Clrscr . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
@@ -1271,7 +1659,7 @@ CreateFileA  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External
 CreateOutputFile . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 Crlf . . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 Delay  . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
-DisplayMessage . . . . . . . . .	P Near	 00000226 _TEXT	Length= 0000000D Public STDCALL
+DisplayMessage . . . . . . . . .	P Near	 00000566 _TEXT	Length= 0000000D Public STDCALL
 DumpMem  . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 DumpRegs . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 ExitProcess  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
@@ -1365,73 +1753,88 @@ WriteStackFrame  . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External
 WriteString  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 WriteToFile  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 WriteWindowsMsg  . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
-addkey . . . . . . . . . . . . .	P Near	 0000046F _TEXT	Length= 00000052 Public STDCALL
-  l1 . . . . . . . . . . . . . .	L Near	 0000049C _TEXT	
-  l2 . . . . . . . . . . . . . .	L Near	 000004B8 _TEXT	
-comparing  . . . . . . . . . . .	P Near	 000000FA _TEXT	Length= 0000012C Public STDCALL
-  lo . . . . . . . . . . . . . .	L Near	 000000FB _TEXT	
-  genfull  . . . . . . . . . . .	L Near	 0000012D _TEXT	
-  disstd . . . . . . . . . . . .	L Near	 0000014D _TEXT	
-  delstd . . . . . . . . . . . .	L Near	 00000168 _TEXT	
-  upstd  . . . . . . . . . . . .	L Near	 00000183 _TEXT	
-  enrollnewstudentwithfile . . .	L Near	 0000019B _TEXT	
-  enstd  . . . . . . . . . . . .	L Near	 000001BE _TEXT	
-  enstudent  . . . . . . . . . .	L Near	 000001C8 _TEXT	
-  lol  . . . . . . . . . . . . .	L Near	 000001E3 _TEXT	
-  done . . . . . . . . . . . . .	L Near	 00000213 _TEXT	
-createfile_  . . . . . . . . . .	P Near	 0000026D _TEXT	Length= 00000042 Public STDCALL
-  file_ok  . . . . . . . . . . .	L Near	 00000293 _TEXT	
-createfileonly . . . . . . . . .	P Near	 00000303 _TEXT	Length= 0000007D Public STDCALL
-  file_ok  . . . . . . . . . . .	L Near	 00000364 _TEXT	
-delete . . . . . . . . . . . . .	P Near	 0000066C _TEXT	Length= 00000082 Public STDCALL
+addkey . . . . . . . . . . . . .	P Near	 000007B8 _TEXT	Length= 00000052 Public STDCALL
+  l1 . . . . . . . . . . . . . .	L Near	 000007E5 _TEXT	
+  l2 . . . . . . . . . . . . . .	L Near	 00000801 _TEXT	
+alpha_grade  . . . . . . . . . .	P Near	 000000CC _TEXT	Length= 0000005F Public STDCALL
+  A  . . . . . . . . . . . . . .	L Near	 000000FB _TEXT	
+  B  . . . . . . . . . . . . . .	L Near	 00000102 _TEXT	
+  CC . . . . . . . . . . . . . .	L Near	 00000109 _TEXT	
+  D  . . . . . . . . . . . . . .	L Near	 00000110 _TEXT	
+  F  . . . . . . . . . . . . . .	L Near	 00000117 _TEXT	
+  error  . . . . . . . . . . . .	L Near	 0000011E _TEXT	
+  done . . . . . . . . . . . . .	L Near	 0000012A _TEXT	
+comparing  . . . . . . . . . . .	P Near	 00000352 _TEXT	Length= 00000214 Public STDCALL
+  lo . . . . . . . . . . . . . .	L Near	 00000353 _TEXT	
+  genfull  . . . . . . . . . . .	L Near	 00000391 _TEXT	
+  disstd . . . . . . . . . . . .	L Near	 000003B1 _TEXT	
+  delstd . . . . . . . . . . . .	L Near	 00000421 _TEXT	
+  upstd  . . . . . . . . . . . .	L Near	 00000487 _TEXT	
+  enrollnewstudentwithfile . . .	L Near	 000004D0 _TEXT	
+  pool . . . . . . . . . . . . .	L Near	 000004D5 _TEXT	
+  enstd  . . . . . . . . . . . .	L Near	 000004F2 _TEXT	
+  enstudent  . . . . . . . . . .	L Near	 000004F7 _TEXT	
+  lol  . . . . . . . . . . . . .	L Near	 00000512 _TEXT	
+  donny  . . . . . . . . . . . .	L Near	 0000054C _TEXT	
+  done . . . . . . . . . . . . .	L Near	 0000054E _TEXT	
+  createnewfileend . . . . . . .	L Near	 00000558 _TEXT	
+  endy . . . . . . . . . . . . .	L Near	 0000055D _TEXT	
+createfile_  . . . . . . . . . .	P Near	 000005AD _TEXT	Length= 00000042 Public STDCALL
+  file_ok  . . . . . . . . . . .	L Near	 000005D3 _TEXT	
+createfileonly . . . . . . . . .	P Near	 00000642 _TEXT	Length= 00000082 Public STDCALL
+  file_ok  . . . . . . . . . . .	L Near	 000006A8 _TEXT	
+delete . . . . . . . . . . . . .	P Near	 000001C8 _TEXT	Length= 00000090 Public STDCALL
   id . . . . . . . . . . . . . .	DWord	 bp + 00000008
   buf  . . . . . . . . . . . . .	DWord	 bp + 0000000C
   idl  . . . . . . . . . . . . .	DWord	 bp + 00000010
   bul  . . . . . . . . . . . . .	DWord	 bp + 00000014
   serRBuf  . . . . . . . . . . .	DWord	 bp + 00000018
-  ag . . . . . . . . . . . . . .	L Near	 0000067F _TEXT	
-  s1 . . . . . . . . . . . . . .	L Near	 0000068E _TEXT	
-  NR1  . . . . . . . . . . . . .	L Near	 000006A1 _TEXT	
-  dne  . . . . . . . . . . . . .	L Near	 000006BA _TEXT	
-  l1 . . . . . . . . . . . . . .	L Near	 000006C3 _TEXT	
-  DR . . . . . . . . . . . . . .	L Near	 000006D1 _TEXT	
-  con  . . . . . . . . . . . . .	L Near	 000006D8 _TEXT	
-  wr . . . . . . . . . . . . . .	L Near	 000006DE _TEXT	
-  re . . . . . . . . . . . . . .	L Near	 000006EA _TEXT	
-encrypt  . . . . . . . . . . . .	P Near	 00000233 _TEXT	Length= 0000003A Public STDCALL
-  Lo . . . . . . . . . . . . . .	L Near	 00000244 _TEXT	
-  done . . . . . . . . . . . . .	L Near	 0000026B _TEXT	
-enrollstd  . . . . . . . . . . .	P Near	 000002AF _TEXT	Length= 00000054 Public STDCALL
-  looop  . . . . . . . . . . . .	L Near	 000002B4 _TEXT	
-  savee  . . . . . . . . . . . .	L Near	 000002EC _TEXT	
-inputfromuser  . . . . . . . . .	P Near	 00000380 _TEXT	Length= 0000001F Public STDCALL
-main . . . . . . . . . . . . . .	P Near	 000000A8 _TEXT	Length= 00000052 Public STDCALL
-ofile  . . . . . . . . . . . . .	P Near	 0000039F _TEXT	Length= 000000D0 Public STDCALL
-  loo  . . . . . . . . . . . . .	L Near	 0000039F _TEXT	
-  file_ok  . . . . . . . . . . .	L Near	 00000404 _TEXT	
-  l1 . . . . . . . . . . . . . .	L Near	 0000043D _TEXT	
-  err  . . . . . . . . . . . . .	L Near	 00000449 _TEXT	
-  donee  . . . . . . . . . . . .	L Near	 00000464 _TEXT	
+  ag . . . . . . . . . . . . . .	L Near	 000001DB _TEXT	
+  sear . . . . . . . . . . . . .	L Near	 000001EE _TEXT	
+  NR . . . . . . . . . . . . . .	L Near	 00000201 _TEXT	
+  dne  . . . . . . . . . . . . .	L Near	 0000021A _TEXT	
+  l1 . . . . . . . . . . . . . .	L Near	 00000223 _TEXT	
+  DR . . . . . . . . . . . . . .	L Near	 00000231 _TEXT	
+  con  . . . . . . . . . . . . .	L Near	 00000238 _TEXT	
+  wr . . . . . . . . . . . . . .	L Near	 00000248 _TEXT	
+  re . . . . . . . . . . . . . .	L Near	 00000254 _TEXT	
+encrypt  . . . . . . . . . . . .	P Near	 00000573 _TEXT	Length= 0000003A Public STDCALL
+  Lo . . . . . . . . . . . . . .	L Near	 00000584 _TEXT	
+  done . . . . . . . . . . . . .	L Near	 000005AB _TEXT	
+enrollstd  . . . . . . . . . . .	P Near	 000005EF _TEXT	Length= 00000053 Public STDCALL
+  looop  . . . . . . . . . . . .	L Near	 000005EF _TEXT	
+  savee  . . . . . . . . . . . .	L Near	 00000629 _TEXT	
+inputfromuserr . . . . . . . . .	P Near	 00000000 _TEXT	Length= 000000CC Public STDCALL
+  Loo  . . . . . . . . . . . . .	L Near	 0000000F _TEXT	
+inputfromuser  . . . . . . . . .	P Near	 000006C4 _TEXT	Length= 0000001F Public STDCALL
+main . . . . . . . . . . . . . .	P Near	 00000300 _TEXT	Length= 00000052 Public STDCALL
+ofile  . . . . . . . . . . . . .	P Near	 000006E3 _TEXT	Length= 000000D5 Public STDCALL
+  loo  . . . . . . . . . . . . .	L Near	 000006E3 _TEXT	
+  file_ok  . . . . . . . . . . .	L Near	 00000748 _TEXT	
+  l1 . . . . . . . . . . . . . .	L Near	 00000786 _TEXT	
+  err  . . . . . . . . . . . . .	L Near	 00000792 _TEXT	
+  donee  . . . . . . . . . . . .	L Near	 000007AD _TEXT	
 printf . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
-report . . . . . . . . . . . . .	P Near	 000004C1 _TEXT	Length= 000001AB Public STDCALL
-  X  . . . . . . . . . . . . . .	L Near	 000004C1 _TEXT	
-  IDSORT . . . . . . . . . . . .	L Near	 0000052C _TEXT	
-  getallid . . . . . . . . . . .	L Near	 0000052C _TEXT	
-  lop  . . . . . . . . . . . . .	L Near	 0000053E _TEXT	
-  store_id . . . . . . . . . . .	L Near	 00000545 _TEXT	
-  lo . . . . . . . . . . . . . .	L Near	 00000559 _TEXT	
-  skip . . . . . . . . . . . . .	L Near	 00000562 _TEXT	
-  llll . . . . . . . . . . . . .	L Near	 0000057E _TEXT	
-  lala . . . . . . . . . . . . .	L Near	 00000589 _TEXT	
-  GRADESort  . . . . . . . . . .	L Near	 000005F3 _TEXT	
-  LOOL . . . . . . . . . . . . .	L Near	 00000602 _TEXT	
-  cnt  . . . . . . . . . . . . .	L Near	 0000060A _TEXT	
-  donelool . . . . . . . . . . .	L Near	 00000627 _TEXT	
-  donne  . . . . . . . . . . . .	L Near	 00000632 _TEXT	
-  file_ok  . . . . . . . . . . .	L Near	 00000652 _TEXT	
-  quit . . . . . . . . . . . . .	L Near	 0000066B _TEXT	
+report . . . . . . . . . . . . .	P Near	 0000080A _TEXT	Length= 000001EF Public STDCALL
+  X  . . . . . . . . . . . . . .	L Near	 0000080A _TEXT	
+  IDSORT . . . . . . . . . . . .	L Near	 00000875 _TEXT	
+  getallid . . . . . . . . . . .	L Near	 00000875 _TEXT	
+  lop  . . . . . . . . . . . . .	L Near	 00000887 _TEXT	
+  store_id . . . . . . . . . . .	L Near	 0000088E _TEXT	
+  lo . . . . . . . . . . . . . .	L Near	 000008A2 _TEXT	
+  skip . . . . . . . . . . . . .	L Near	 000008AB _TEXT	
+  llll . . . . . . . . . . . . .	L Near	 000008D3 _TEXT	
+  lala . . . . . . . . . . . . .	L Near	 000008DE _TEXT	
+  cdnee  . . . . . . . . . . . .	L Near	 0000095B _TEXT	
+  GRADESort  . . . . . . . . . .	L Near	 00000980 _TEXT	
+  LOOL . . . . . . . . . . . . .	L Near	 0000098F _TEXT	
+  cnt  . . . . . . . . . . . . .	L Near	 00000997 _TEXT	
+  donelool . . . . . . . . . . .	L Near	 000009B4 _TEXT	
+  donne  . . . . . . . . . . . .	L Near	 000009BF _TEXT	
+  file_ok  . . . . . . . . . . .	L Near	 000009DF _TEXT	
+  quit . . . . . . . . . . . . .	L Near	 000009F8 _TEXT	
 scanf  . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
-search . . . . . . . . . . . . .	P Near	 00000035 _TEXT	Length= 00000073 Public STDCALL
+search . . . . . . . . . . . . .	P Near	 0000028D _TEXT	Length= 00000073 Public STDCALL
   serid  . . . . . . . . . . . .	DWord	 bp + 00000008
   serbuf . . . . . . . . . . . .	DWord	 bp + 0000000C
   seridl . . . . . . . . . . . .	DWord	 bp + 00000010
@@ -1439,12 +1842,27 @@ search . . . . . . . . . . . . .	P Near	 00000035 _TEXT	Length= 00000073 Public 
   fbl  . . . . . . . . . . . . .	DWord	 bp + 00000018
   snb  . . . . . . . . . . . . .	DWord	 bp + 0000001C
   serRBuf  . . . . . . . . . . .	DWord	 bp + 00000020
-  ag . . . . . . . . . . . . . .	L Near	 00000048 _TEXT	
-  sear . . . . . . . . . . . . .	L Near	 0000005B _TEXT	
-  NR . . . . . . . . . . . . . .	L Near	 0000006E _TEXT	
-  done . . . . . . . . . . . . .	L Near	 00000087 _TEXT	
-  l  . . . . . . . . . . . . . .	L Near	 00000096 _TEXT	
-  wr . . . . . . . . . . . . . .	L Near	 000000A4 _TEXT	
+  ag . . . . . . . . . . . . . .	L Near	 000002A0 _TEXT	
+  sear . . . . . . . . . . . . .	L Near	 000002B3 _TEXT	
+  NR . . . . . . . . . . . . . .	L Near	 000002C6 _TEXT	
+  done . . . . . . . . . . . . .	L Near	 000002DF _TEXT	
+  l  . . . . . . . . . . . . . .	L Near	 000002EE _TEXT	
+  wr . . . . . . . . . . . . . .	L Near	 000002FC _TEXT	
+update . . . . . . . . . . . . .	P Near	 0000012B _TEXT	Length= 0000009D Public STDCALL
+  id . . . . . . . . . . . . . .	DWord	 bp + 00000008
+  buf  . . . . . . . . . . . . .	DWord	 bp + 0000000C
+  idl  . . . . . . . . . . . . .	DWord	 bp + 00000010
+  bul  . . . . . . . . . . . . .	DWord	 bp + 00000014
+  serRBuf  . . . . . . . . . . .	DWord	 bp + 00000018
+  ag . . . . . . . . . . . . . .	L Near	 0000013E _TEXT	
+  sear . . . . . . . . . . . . .	L Near	 00000151 _TEXT	
+  NR . . . . . . . . . . . . . .	L Near	 00000164 _TEXT	
+  dne  . . . . . . . . . . . . .	L Near	 0000017D _TEXT	
+  l1 . . . . . . . . . . . . . .	L Near	 00000186 _TEXT	
+  DR . . . . . . . . . . . . . .	L Near	 00000194 _TEXT	
+  con  . . . . . . . . . . . . .	L Near	 0000019B _TEXT	
+  wr . . . . . . . . . . . . . .	L Near	 000001B8 _TEXT	
+  re . . . . . . . . . . . . . .	L Near	 000001C4 _TEXT	
 wsprintfA  . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
 
 
@@ -1452,24 +1870,30 @@ Symbols:
 
                 N a m e                 Type     Value    Attr
 
-??0000 . . . . . . . . . . . . .	Byte	 0000778E _DATA	
-??0001 . . . . . . . . . . . . .	Byte	 000077BE _DATA	
-??0002 . . . . . . . . . . . . .	Byte	 000077EE _DATA	
-??0003 . . . . . . . . . . . . .	Byte	 0000781E _DATA	
-??0004 . . . . . . . . . . . . .	Byte	 0000784E _DATA	
-??0005 . . . . . . . . . . . . .	Byte	 0000787E _DATA	
-??0006 . . . . . . . . . . . . .	Byte	 000078AE _DATA	
-??0007 . . . . . . . . . . . . .	Byte	 000078BA _DATA	
-??0008 . . . . . . . . . . . . .	Byte	 000078DF _DATA	
-??0009 . . . . . . . . . . . . .	Byte	 000078FE _DATA	
-??000A . . . . . . . . . . . . .	Byte	 0000791D _DATA	
-??000B . . . . . . . . . . . . .	Byte	 0000792F _DATA	
-??000C . . . . . . . . . . . . .	Byte	 00007942 _DATA	
-??000D . . . . . . . . . . . . .	Byte	 0000794E _DATA	
-??000E . . . . . . . . . . . . .	Byte	 00007977 _DATA	
-??000F . . . . . . . . . . . . .	Byte	 00007991 _DATA	
-??0010 . . . . . . . . . . . . .	Byte	 000079B8 _DATA	
-??0011 . . . . . . . . . . . . .	Byte	 000079D1 _DATA	
+??0000 . . . . . . . . . . . . .	Byte	 00008B17 _DATA	
+??0001 . . . . . . . . . . . . .	Byte	 00008B32 _DATA	
+??0002 . . . . . . . . . . . . .	Byte	 00008B4F _DATA	
+??0003 . . . . . . . . . . . . .	Byte	 00008B6D _DATA	
+??0004 . . . . . . . . . . . . .	Byte	 00008B8F _DATA	
+??0005 . . . . . . . . . . . . .	Byte	 00008BB4 _DATA	
+??0006 . . . . . . . . . . . . .	Byte	 00008BBF _DATA	
+??0007 . . . . . . . . . . . . .	Byte	 00008BCA _DATA	
+??0008 . . . . . . . . . . . . .	Byte	 00008BFA _DATA	
+??0009 . . . . . . . . . . . . .	Byte	 00008C2D _DATA	
+??000A . . . . . . . . . . . . .	Byte	 00008C50 _DATA	
+??000B . . . . . . . . . . . . .	Byte	 00008C68 _DATA	
+??000C . . . . . . . . . . . . .	Byte	 00008C98 _DATA	
+??000D . . . . . . . . . . . . .	Byte	 00008CC8 _DATA	
+??000E . . . . . . . . . . . . .	Byte	 00008CD4 _DATA	
+??000F . . . . . . . . . . . . .	Byte	 00008CF9 _DATA	
+??0010 . . . . . . . . . . . . .	Byte	 00008D18 _DATA	
+??0011 . . . . . . . . . . . . .	Byte	 00008D37 _DATA	
+??0012 . . . . . . . . . . . . .	Byte	 00008D49 _DATA	
+??0013 . . . . . . . . . . . . .	Byte	 00008D5C _DATA	
+??0014 . . . . . . . . . . . . .	Byte	 00008D68 _DATA	
+??0015 . . . . . . . . . . . . .	Byte	 00008D91 _DATA	
+??0016 . . . . . . . . . . . . .	Byte	 00008DAB _DATA	
+??0017 . . . . . . . . . . . . .	Byte	 00008DD2 _DATA	
 @CodeSize  . . . . . . . . . . .	Number	 00000000h   
 @DataSize  . . . . . . . . . . .	Number	 00000000h   
 @Interface . . . . . . . . . . .	Number	 00000003h   
@@ -1487,7 +1911,7 @@ CREATE_NEW . . . . . . . . . . .	Number	 00000001h
 CTRL_MASK  . . . . . . . . . . .	Number	 0000000Ch   
 CreateFile . . . . . . . . . . .	Text   	 CreateFileA
 DO_NOT_SHARE . . . . . . . . . .	Number	 00000000h   
-DisplaySTD . . . . . . . . . . .	Byte	 00004EEC _DATA	
+DisplaySTD . . . . . . . . . . .	Byte	 00006275 _DATA	
 ENABLE_ECHO_INPUT  . . . . . . .	Number	 00000004h   
 ENABLE_LINE_INPUT  . . . . . . .	Number	 00000002h   
 ENABLE_MOUSE_INPUT . . . . . . .	Number	 00000010h   
@@ -1600,7 +2024,7 @@ SetConsoleTitle  . . . . . . . .	Text   	 SetConsoleTitleA
 TAB  . . . . . . . . . . . . . .	Number	 00000009h   
 TRUE . . . . . . . . . . . . . .	Number	 00000001h   
 TRUNCATE_EXISTING  . . . . . . .	Number	 00000005h   
-TempBuffer . . . . . . . . . . .	Byte	 00005026 _DATA	
+TempBuffer . . . . . . . . . . .	Byte	 000063AF _DATA	
 VK_11  . . . . . . . . . . . . .	Number	 000000BDh   
 VK_12  . . . . . . . . . . . . .	Number	 000000BBh   
 VK_ADD . . . . . . . . . . . . .	Number	 0000006Bh   
@@ -1682,33 +2106,34 @@ VK_UP  . . . . . . . . . . . . .	Number	 00000026h
 WINDOW_BUFFER_SIZE_EVENT . . . .	Number	 00000004h   
 WriteConsoleOutputCharacter  . .	Text   	 WriteConsoleOutputCharacterA
 WriteConsole . . . . . . . . . .	Text   	 WriteConsoleA
-addrr  . . . . . . . . . . . . .	DWord	 00007788 _DATA	
-arrr . . . . . . . . . . . . . .	Byte	 0000271C _DATA	
+addrr  . . . . . . . . . . . . .	DWord	 00008B11 _DATA	
+arrr . . . . . . . . . . . . . .	Byte	 00003AA5 _DATA	
 arr  . . . . . . . . . . . . . .	Byte	 00001393 _DATA	
 black  . . . . . . . . . . . . .	Number	 00000000h   
 blue . . . . . . . . . . . . . .	Number	 00000001h   
 brown  . . . . . . . . . . . . .	Number	 00000006h   
 buffer . . . . . . . . . . . . .	Byte	 00000000 _DATA	
-bytesWritten . . . . . . . . . .	DWord	 00004E7C _DATA	
-countbyte  . . . . . . . . . . .	DWord	 00004E78 _DATA	
-counter  . . . . . . . . . . . .	Byte	 0000778C _DATA	
+bytesWritten . . . . . . . . . .	DWord	 00006205 _DATA	
+conc . . . . . . . . . . . . . .	Byte	 0000271C _DATA	
+countbyte  . . . . . . . . . . .	DWord	 00006201 _DATA	
+counter  . . . . . . . . . . . .	Byte	 00008B15 _DATA	
 cyan . . . . . . . . . . . . . .	Number	 00000003h   
-delstudent . . . . . . . . . . .	Byte	 00004ECF _DATA	
-del  . . . . . . . . . . . . . .	Byte	 000063FD _DATA	
-divident . . . . . . . . . . . .	Byte	 0000778D _DATA	
-enroll . . . . . . . . . . . . .	Byte	 00004FEF _DATA	
-eqcount  . . . . . . . . . . . .	Byte	 00004E3C _DATA	
+delstudent . . . . . . . . . . .	Byte	 00006258 _DATA	
+del  . . . . . . . . . . . . . .	Byte	 00007786 _DATA	
+divident . . . . . . . . . . . .	Byte	 00008B16 _DATA	
+enroll . . . . . . . . . . . . .	Byte	 00006378 _DATA	
+eqcount  . . . . . . . . . . . .	Byte	 000061C5 _DATA	
 exit . . . . . . . . . . . . . .	Text   	 INVOKE ExitProcess,0
-fileHandle . . . . . . . . . . .	DWord	 00004E6C _DATA	
-fileend  . . . . . . . . . . . .	DWord	 000063B4 _DATA	
-filenamee  . . . . . . . . . . .	Byte	 00004E3D _DATA	
-filename . . . . . . . . . . . .	Byte	 00004E51 _DATA	
-finalbuffer  . . . . . . . . . .	Byte	 00003AA9 _DATA	
+fileHandle . . . . . . . . . . .	DWord	 000061F5 _DATA	
+fileend  . . . . . . . . . . . .	DWord	 00007740 _DATA	
+filenamee  . . . . . . . . . . .	Byte	 000061C6 _DATA	
+filename . . . . . . . . . . . .	Byte	 000061DA _DATA	
+finalbuffer  . . . . . . . . . .	Byte	 00004E32 _DATA	
 gray . . . . . . . . . . . . . .	Number	 00000008h   
 green  . . . . . . . . . . . . .	Number	 00000002h   
-info . . . . . . . . . . . . . .	Byte	 000063B8 _DATA	
-keylength  . . . . . . . . . . .	DWord	 00004E68 _DATA	
-keylog . . . . . . . . . . . . .	Byte	 00004E95 _DATA	
+info . . . . . . . . . . . . . .	Byte	 00007744 _DATA	
+keylength  . . . . . . . . . . .	DWord	 000061F1 _DATA	
+keylog . . . . . . . . . . . . .	Byte	 0000621E _DATA	
 key  . . . . . . . . . . . . . .	Number	 000000FBh   
 lightBlue  . . . . . . . . . . .	Number	 00000009h   
 lightCyan  . . . . . . . . . . .	Number	 0000000Bh   
@@ -1717,30 +2142,30 @@ lightGreen . . . . . . . . . . .	Number	 0000000Ah
 lightMagenta . . . . . . . . . .	Number	 0000000Dh   
 lightRed . . . . . . . . . . . .	Number	 0000000Ch   
 magenta  . . . . . . . . . . . .	Number	 00000005h   
-myind  . . . . . . . . . . . . .	DWord	 000063B0 _DATA	
-newkey . . . . . . . . . . . . .	Byte	 00004E65 _DATA	
-op0  . . . . . . . . . . . . . .	Byte	 00004FE2 _DATA	
-op1  . . . . . . . . . . . . . .	Byte	 00004F0F _DATA	
-op2  . . . . . . . . . . . . . .	Byte	 00004F59 _DATA	
-op3  . . . . . . . . . . . . . .	Byte	 00004F75 _DATA	
-op4  . . . . . . . . . . . . . .	Byte	 00004F91 _DATA	
-op5  . . . . . . . . . . . . . .	Byte	 00004FAB _DATA	
-op6  . . . . . . . . . . . . . .	Byte	 00004F36 _DATA	
+myind  . . . . . . . . . . . . .	DWord	 0000773C _DATA	
+newkey . . . . . . . . . . . . .	Byte	 000061EE _DATA	
+op0  . . . . . . . . . . . . . .	Byte	 0000636B _DATA	
+op1  . . . . . . . . . . . . . .	Byte	 00006298 _DATA	
+op2  . . . . . . . . . . . . . .	Byte	 000062E2 _DATA	
+op3  . . . . . . . . . . . . . .	Byte	 000062FE _DATA	
+op4  . . . . . . . . . . . . . .	Byte	 0000631A _DATA	
+op5  . . . . . . . . . . . . . .	Byte	 00006334 _DATA	
+op6  . . . . . . . . . . . . . .	Byte	 000062BF _DATA	
 red  . . . . . . . . . . . . . .	Number	 00000004h   
-report_entery  . . . . . . . . .	Byte	 000063C5 _DATA	
-sav  . . . . . . . . . . . . . .	Byte	 00004FC8 _DATA	
-sid  . . . . . . . . . . . . . .	Byte	 000063AF _DATA	
-sorted_arr . . . . . . . . . . .	Byte	 00002720 _DATA	
-str1 . . . . . . . . . . . . . .	Byte	 00004E80 _DATA	
-stringLength . . . . . . . . . .	DWord	 00004E70 _DATA	
-stringLen  . . . . . . . . . . .	DWord	 00004E74 _DATA	
-u1 . . . . . . . . . . . . . . .	DWord	 00005022 _DATA	
-updatestudent  . . . . . . . . .	Byte	 00004EB2 _DATA	
-u  . . . . . . . . . . . . . . .	DWord	 0000501E _DATA	
+report_entery  . . . . . . . . .	Byte	 00007751 _DATA	
+sav  . . . . . . . . . . . . . .	Byte	 00006351 _DATA	
+sid  . . . . . . . . . . . . . .	Byte	 00007738 _DATA	
+sorted_arr . . . . . . . . . . .	Byte	 00003AA9 _DATA	
+str1 . . . . . . . . . . . . . .	Byte	 00006209 _DATA	
+stringLength . . . . . . . . . .	DWord	 000061F9 _DATA	
+stringLen  . . . . . . . . . . .	DWord	 000061FD _DATA	
+u1 . . . . . . . . . . . . . . .	DWord	 000063AB _DATA	
+updatestudent  . . . . . . . . .	Byte	 0000623B _DATA	
+u  . . . . . . . . . . . . . . .	DWord	 000063A7 _DATA	
 white  . . . . . . . . . . . . .	Number	 0000000Fh   
 wsprintf . . . . . . . . . . . .	Text   	 wsprintfA
 yellow . . . . . . . . . . . . .	Number	 0000000Eh   
-zeft_buffer  . . . . . . . . . .	Byte	 000063FF _DATA	
+zeft_buffer  . . . . . . . . . .	Byte	 00007788 _DATA	
 
-	   2 Warnings
+	   4 Warnings
 	   0 Errors

@@ -7,6 +7,8 @@ key = 251
 .data
 buffer byte BUFFER_SIZE+10 DUP(?)
 arr byte BUFFER_SIZE dup(?)
+conc byte BUFFER_SIZE dup(?)
+
 arrr byte 4 dup(?)
 sorted_arr byte BUFFER_SIZE dup(?)
 finalbuffer byte BUFFER_SIZE+10 DUP(?)
@@ -40,11 +42,11 @@ enroll byte "Enter Student's ID and Grade seprated by :@: :",0
 u dword 0
 u1 dword 0
 TempBuffer BYTE BUFFER_SIZE DUP(?)
-sid byte  '4'
+sid byte 4 dup(?)
 myind dword  ?
 fileend dword ?
 info byte 13 dup(?)
-report_entery byte "StudentID Student Name Numeric Grade Alphabetic Grade",0dh,0ah,0
+report_entery byte "StudentID Student Name Numeric Grade Alphabetic_Grade";,0dh,0ah
 del byte "#",0
 zeft_buffer byte BUFFER_SIZE dup(?)
 addrr dword ?
@@ -53,6 +55,278 @@ divident byte 3
 ;;;;;;;;
 
 .code
+
+;------------------------------------------------
+;------------------------------------------------
+;take student data from user then put it in arr
+;------------------------------------------------
+inputfromuserr proc
+mov ecx,BUFFER_SIZE
+mov edx,offset arr
+mov bl,'#'
+mov [edx],bl
+inc edx
+Loo:
+mov bl,','	
+mwrite "please Enter student ID : "
+call readstring
+inc eax
+add stringLength ,eax
+mov eax,stringLength
+mov arr[eax],bl
+add edx,eax
+mwrite "please Enter student Name : "
+call readstring
+inc eax
+add stringLength ,eax
+mov esi,stringLength
+mov arr[esi],bl
+add edx,eax
+mwrite "please Enter student Grade : "
+call readstring
+add stringLength ,eax
+mov bl,','
+add edx,eax
+mov [edx],bl
+call alpha_grade
+mov bl,'#'
+add edx,eax
+mov [edx],bl
+mov edx,offset arr
+add edx,stringLength
+add edx,2
+mov bl,','	
+mwrite"enter another record Y(1)/N(0) : "
+call readdec
+cmp eax,1
+je Loo
+add stringLength,5
+mov esi,offset arr
+mov edi,offset buffer
+mov ecx,lengthof arr
+rep movsb
+mov edx,offset buffer
+
+ret
+inputfromuserr endp
+
+;------------------------------------------------
+;
+;
+;store alphaptaic in buffer
+;------------------------------------------------
+;------------------------------------------------
+alpha_grade proc
+mov bx,90
+cmp word ptr[edx],bx
+jae A
+mov bx,80
+cmp word ptr[edx],bx
+jae B
+mov bx,70
+cmp word ptr[edx],bx
+jae CC
+mov bx,60
+cmp word ptr[edx],bx 
+jae D
+mov bx,60
+cmp word ptr[edx],bx
+jb F
+jmp error
+A:
+inc edx
+mov bl ,'A'
+mov [edx],bl
+jmp done
+B:
+inc edx
+mov bl ,'B'
+mov [edx],bl
+jmp done
+CC:
+inc edx
+mov bl ,'C'
+mov [edx],bl
+jmp done
+D:
+inc edx
+mov bl ,'D'
+mov [edx],bl
+jmp done
+F:
+inc edx
+mov bl ,'F'
+mov [edx],bl
+jmp done
+
+error: 
+mwrite"invalid grade please try again later"
+done:
+ret
+alpha_grade endp
+
+
+update proc id :ptr byte, buf :ptr byte, idl :dword, bul :dword, serRBuf :ptr byte
+
+
+mov esi,id
+mov edi,buf
+push edi
+add edi,4
+mov myind,edi
+
+
+ag:
+add edi,4
+mov esi, id
+cmp byte ptr[edi],','
+jne NR
+sub edi,4
+mov ecx, 4
+sear:
+
+cmp byte ptr[edi],','
+je NR
+mov dl,[esi]
+mov bl,[edi]
+inc edi
+inc esi
+cmp dl,bl
+jne NR
+ 
+loop sear
+jmp dne
+
+NR:
+inc edi
+cmp byte ptr[edi],'#'
+jne NR
+inc edi
+mov myind,edi
+mov ecx,4
+cmp edi, bul
+je wr
+jmp ag
+
+
+dne:
+pop edi
+mov esi,serrbuf
+mov ecx,edi
+add ecx,bul
+l1:
+mov bl,[edi]
+mov [esi],bl
+inc edi
+inc esi
+cmp edi,myind
+jne con
+DR:
+inc edi
+cmp byte ptr[edi],'#'
+jne DR
+inc edi
+con:
+cmp edi,ecx
+jne l1
+
+push esi
+call inputfromuserr
+pop esi
+mov ebx ,esi
+mov esi,offset arr
+mov edi,ebx
+mov ecx,lengthof arr
+rep movsb
+
+jmp re
+wr:
+mWrite <"invalid id">
+
+re:
+
+ret
+update endp
+
+
+
+
+delete proc  id :ptr byte, buf :ptr byte, idl :dword, bul :dword, serRBuf :ptr byte
+
+
+mov esi,id
+mov edi,buf
+push edi
+add edi,4
+mov myind,edi
+
+
+ag:
+add edi,4
+mov esi, id
+cmp byte ptr[edi],','
+jne NR
+sub edi,4
+mov ecx, 4
+sear:
+
+cmp byte ptr[edi],','
+je NR
+mov dl,[esi]
+mov bl,[edi]
+inc edi
+inc esi
+cmp dl,bl
+jne NR
+ 
+loop sear
+jmp dne
+
+NR:
+inc edi
+cmp byte ptr[edi],'#'
+jne NR
+inc edi
+mov myind,edi
+mov ecx,4
+cmp edi, bul
+je wr
+jmp ag
+
+
+dne:
+pop edi
+mov esi,serrbuf
+mov ecx,edi
+add ecx,bul
+l1:
+mov bl,[edi]
+mov [esi],bl
+inc edi
+inc esi
+cmp edi,myind
+jne con
+DR:
+inc edi
+cmp byte ptr[edi],'#'
+jne DR
+inc edi
+con:
+
+cmp edi,ecx
+jne l1
+
+mov edx,offset tempbuffer
+call writestring
+jmp re
+wr:
+mWrite <"invalid id">
+
+re:
+
+ret
+delete endp
+
 ;-------------------------------------------------------
 ; BubbleSort
 ; Sort an array of 32-bit signed integers in ascending
@@ -200,42 +474,96 @@ mwrite "enter 0 to repeat this transaction or else done"
 call readdec
 cmp eax,0
 je genfull
-jmp done
+jmp donny
+
+
+
 disstd:
-;call displayinfo
-mwrite "enter 0 to repeat this transaction or else done"
-call readdec
-cmp eax,0
-je disstd
-jmp done
-delstd:
-;call deletestudent
-mwrite "enter 0 to repeat this transaction or else done"
-call readdec
-cmp eax,0
-je delstd
-jmp done
+call ofile 
+
+mwrite"please Enter the student ID in 4 digits ex:0055 : "
+mov edx,offset sid
+
+mov edi,offset buffer
+mov ecx,5
+call readstring
+mov u1,0
+invoke search , offset sid ,  offset buffer , 4 , stringLen, offset u , u1 , offset finalbuffer
+mov ecx,u
+mov edx,offset finalbuffer
+	call writestring
+	call crlf
+	jmp endy
+
+
+
+
+
+	delstd:
+	call ofile
+	mov edx, offset buffer
+mwrite "please enter student ID like 0055:"
+mov edx, offset sid
+mov ecx,5
+call readstring
+mov edx, offset buffer
+call writestring
+invoke delete,offset sid,offset buffer,4,stringLen, offset finalbuffer
+mov esi,offset finalbuffer
+mov edi,offset buffer
+mov ecx,lengthof buffer
+mov edi,3
+rep movsb
+call addkey
+;
+	;mov edx, offset filenamee
+;call createoutputfile
+;mov fileHandle ,eax
+;
+;mov eax,fileHandle
+	;mov edx,OFFSET buffer
+	;mov ecx , stringLen
+	;call WriteToFile
+	;call CloseFile
+;
+;jmp done
+
+
+
 upstd:
-;call updatestudent
-mwrite "enter 0 to repeat this transaction or else done"
-call readdec
-cmp eax,0
-je upstd
-jmp done
+
+mwrite "enter id in 4 digits : "
+mov edx, offset sid
+mov ecx,5
+call readstring
+
+invoke update , offset sid, offset buffer, 4, lengthof buffer, offset finalbuffer
+mov esi,offset finalbuffer
+mov edi,offset buffer
+mov ecx,lengthof finalbuffer
+rep movsb
+je done
+
+
+
 
 enrollnewstudentwithfile:
+mov edx,offset buffer
+pool:
 call enrollstd
+
 mwrite "enter 0 to repeat this transaction or else done"
 call readdec
 cmp eax,0
-je enrollnewstudentwithfile
-popad
-exit
+je pool
+jmp createnewfileend
+
+
+
 
 enstd:
 ;return stringLen 
 call ofile
-call encrypt
 enstudent:
 ;return stringLength
 call inputfromuser
@@ -243,7 +571,6 @@ mov edi,offset arr
 mov esi,offset buffer
 add esi,stringLen
 mov ecx,stringLength
-
 lol:
 mov bl,[edi]
 mov [esi],bl
@@ -257,9 +584,18 @@ mwrite "enter 0 to repeat this transaction or else done"
 call readdec
 cmp eax,0
 je enstudent
+call createfile_
+call encrypt
+donny:
+jmp endy
 done:
 call encrypt
 call createfile_
+
+createnewfileend:
+;call encrypt
+call createfileonly
+endy:
 popad
 exit
 ret
@@ -336,8 +672,8 @@ createfile_ endp
 ;;
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-enrollstd proc
-mov edx,offset buffer
+enrollstd proc 
+
 looop:
 mov byte ptr[edx],'#'
 inc edx
@@ -352,15 +688,19 @@ push edx
 mov edx,offset sav
 call writestring
 pop edx
+add edx,eax
 call readdec
 cmp eax,1
 je savee
 jmp looop
 savee:
 mov ebx,countbyte
+inc ebx
 mov stringLen,ebx
-call encrypt
-call createfileonly
+mov bl,'#'
+inc edx
+mov byte ptr[edx],bl
+inc stringLen
 
 ret
 enrollstd endp
@@ -383,6 +723,7 @@ mov edx,offset newkey
 call readstring
 mov keylength,eax
 call addkey
+call encrypt
 mov edx, offset filenamee
 call createoutputfile
 mov fileHandle ,eax
@@ -434,7 +775,7 @@ mov fileHandle,eax
 cmp eax,INVALID_HANDLE_VALUE      ; error opening file?
 jne file_ok                       ; no: skip
 mWrite <"Cannot open file",0dh,0ah>
-exit                         ; and quit
+exit                              ; and quit
 file_ok:
 ; Read the file into a buffer.
 mov edx,OFFSET buffer
@@ -443,10 +784,11 @@ call ReadFromFile
 mov stringLen,eax 
 mWrite "File size: "
 call WriteDec                        ; display file size
-call Crlf              
+call Crlf 
+call encrypt             
 mov edx,OFFSET buffer
 mov ebx,offset newkey
-mov ecx,3
+mov ecx,lengthof newkey
 l1:
 mov al,[edx]
 cmp al,[ebx]
@@ -563,7 +905,16 @@ invoke BubbleSort ,offset arr,lengthof arr
 ;;; we should now call search fun to return records in sorted array 
 ;;; i will pass to it sorted array
 
-mov ecx,3
+mov esi,offset report_entery
+mov ecx,lengthof report_entery
+mov edi,offset  finalbuffer
+rep movsb
+
+
+;mov u1,lengthof report_entery
+; u1,2
+
+
 mov esi,0
 llll:
 push ecx
@@ -577,12 +928,27 @@ inc edi
 loop lala
 push esi
 invoke search , offset arrr ,  offset buffer , 4 , lengthof buffer , offset u , u1 , offset finalbuffer
+
+mov ebx , u1
+sub ebx,2
+mov finalbuffer[ebx], 0dh
+inc ebx
+mov finalbuffer[ebx], 0ah
+
+mov edx,offset finalbuffer
+add u,2
 mov eax,u
 mov u1,eax
 pop esi
 pop ecx
-loop llll
 
+cmp arr[esi],'0'
+jb cdnee
+cmp arr[esi],'9'
+
+jb llll
+
+cdnee:
 mov edx, offset filename
 call createoutputfile
 mov fileHandle ,eax
@@ -631,9 +997,6 @@ call writestring
 file_ok:
  
     mov eax,fileHandle
-	;mov edx,offset report_entery
-	;mov ecx,lengthof report_entery
-	;call WriteToFile
 	mov edx,OFFSET finalbuffer
 	mov ecx , lengthof   finalbuffer
 	call WriteToFile
@@ -643,80 +1006,6 @@ ret
 report endp
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;delete
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-delete proc  id :ptr byte, buf :ptr byte, idl :dword, bul :dword, serRBuf :ptr byte
-mov esi,id
 
-mov edi,buf
-push edi
-add edi,1
-mov myind,edi
-
-ag:
-mov eax,idl
-add edi,eax
-
-cmp byte ptr[edi],','
-jne NR1
-sub edi,eax
-mov ecx, idl
-s1:
-
-cmp byte ptr[edi],','
-je NR1
-mov dl,[esi]
-mov bl,[edi]
-inc edi
-inc esi
-cmp dl,bl
-jne NR1
- 
-loop s1
-jmp dne
-
-NR1:
-inc edi
-cmp byte ptr[edi],'#'
-jne NR1
-inc edi
-mov myind,edi
-mov ecx,4
-cmp edi, bul
-je wr
-jmp ag
-
-dne:
-pop edi
-mov esi,serrbuf
-mov ecx,edi
-add ecx,bul
-l1:
-mov bl,[edi]
-mov [esi],bl
-inc edi
-inc esi
-cmp edi,myind
-jne con
-DR:
-inc edi
-cmp byte ptr[edi],'#'
-jne DR
-inc edi
-con:
-
-cmp edi,ecx
-jne l1
-
-jmp re
-wr:
-mWrite <"invalid id">
-
-re:
-
-ret
-delete endp
 
 end main
